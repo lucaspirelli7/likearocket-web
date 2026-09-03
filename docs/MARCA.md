@@ -39,6 +39,23 @@ Sustitutos libres self-hosted (`@fontsource`), fáciles de cambiar en `global.cs
 - **Color-blocking**: cabeceras de sección con las 4 marcas rotando (ver `Steps.astro`).
 - Botones tipo pill, radios generosos, micro-elevación en hover.
 
+## Movimiento
+
+Todo en `global.css` (sección "MOVIMIENTO") y en 3 componentes. **Todo se desactiva
+con `prefers-reduced-motion: reduce`.**
+
+| Pieza | Cómo se usa |
+|---|---|
+| Transición entre páginas | `<ClientRouter />` en `BaseLayout` (View Transitions API) |
+| Revelado al scroll | `<Reveal>` (`variant`: up/left/right/scale, `delay` en ms) + observer global en `BaseLayout`. Sólo oculta si hay JS (`html.reveal-ready`) y con failsafe a 2,5 s |
+| Banda en movimiento | `<Marquee items={[...]} reverse?>` |
+| Blobs / cohete | `.animate-blob`, `.animate-float`, `.animate-float-slow`, `<RocketArt>` |
+| Texto visual | `.text-gradient` (degradado animado), `.groovy` (Bagel Fat One), `.text-stroke` |
+| Micro-interacción | `.link-arrow` (flecha), `.card-hover` (elevación), `.pop-in` |
+
+Regla: el movimiento acompaña, no distrae. Entradas rápidas (0,5–0,6 s), nada que
+haga esperar al usuario, una sola animación "en bucle" visible por zona.
+
 ## Logo
 
 `public/brand/`:
