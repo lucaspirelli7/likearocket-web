@@ -53,70 +53,74 @@
   }
 }
 
-.container-page {
-  margin-inline: auto;
-  width: 100%;
-  max-width: 72rem;
-  padding-inline: 1.25rem;
-}
-@media (min-width: 640px) {
-  .container-page { padding-inline: 2rem; }
-}
+/* Componentes en @layer components: las utilidades de Tailwind (hidden, lg:*, ...)
+   siempre ganan a estas reglas al combinarlas en el mismo elemento. */
+@layer components {
+  .container-page {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 72rem;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .container-page { padding-inline: 2rem; }
+  }
 
-.btn,
-.btn-primary,
-.btn-ghost,
-.btn-dark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 9999px;
-  padding: 0.75rem 1.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.025em;
-  transition: all 0.2s ease;
-  border: 1px solid transparent;
-}
-.btn-primary {
-  background-color: var(--color-magenta-500);
-  color: #fff;
-  box-shadow: 0 10px 30px -10px var(--color-magenta-500);
-}
-.btn-primary:hover { background-color: var(--color-magenta-600); }
+  .btn,
+  .btn-primary,
+  .btn-ghost,
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background-color: var(--color-magenta-500);
+    color: #fff;
+    box-shadow: 0 10px 30px -10px var(--color-magenta-500);
+  }
+  .btn-primary:hover { background-color: var(--color-magenta-600); }
 
-.btn-ghost {
-  border-color: color-mix(in srgb, #fff 25%, transparent);
-  color: #fff;
-}
-.btn-ghost:hover {
-  border-color: color-mix(in srgb, #fff 60%, transparent);
-  background-color: color-mix(in srgb, #fff 5%, transparent);
-}
+  .btn-ghost {
+    border-color: color-mix(in srgb, #fff 25%, transparent);
+    color: #fff;
+  }
+  .btn-ghost:hover {
+    border-color: color-mix(in srgb, #fff 60%, transparent);
+    background-color: color-mix(in srgb, #fff 5%, transparent);
+  }
 
-.btn-dark {
-  border-color: color-mix(in srgb, var(--color-ink) 15%, transparent);
-  color: var(--color-ink);
-}
-.btn-dark:hover {
-  border-color: color-mix(in srgb, var(--color-ink) 40%, transparent);
-  background-color: color-mix(in srgb, var(--color-ink) 5%, transparent);
-}
+  .btn-dark {
+    border-color: color-mix(in srgb, var(--color-ink) 15%, transparent);
+    color: var(--color-ink);
+  }
+  .btn-dark:hover {
+    border-color: color-mix(in srgb, var(--color-ink) 40%, transparent);
+    background-color: color-mix(in srgb, var(--color-ink) 5%, transparent);
+  }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--color-cyan-600);
-}
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-cyan-600);
+  }
 
-.prose-lr {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: color-mix(in srgb, var(--color-ink) 75%, transparent);
+  .prose-lr {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: color-mix(in srgb, var(--color-ink) 75%, transparent);
+  }
 }
