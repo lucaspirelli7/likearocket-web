@@ -83,6 +83,11 @@ Netlify/Cloudflare). Ninguna URL actual puede quedar en 404.
 - [ ] Revisar datos de contacto: el brief y la web antigua usan `pedro@likearocket.es`
       y `+34 690 82 70 79`. Confirmar que siguen vigentes.
 - [ ] Decidir hosting y configurar dominio + los 301 a nivel de servidor.
+- [ ] **Versión de Astro**: fijada en 5.18.2. Astro 7 (con rolldown) aún falla al
+      construir este proyecto y `@astrojs/sitemap` todavía no soporta la 7. `npm audit`
+      marca XSS en APIs de Astro (define:vars, server islands, spread props, slots) que
+      este sitio estático no expone a entrada no confiable. Revisar cuando el ecosistema
+      de Astro 7 madure o salga un parche para la rama 5.x.
 
 ## Qué se descartó de la web antigua (Odoo)
 
