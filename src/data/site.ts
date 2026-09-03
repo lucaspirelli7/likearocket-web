@@ -40,6 +40,9 @@ export const nav = [
   { label: "Contacto", href: "/contacto" },
 ] as const;
 
+// Sección "El equipo": retirada de la web por ahora, se añadirá más adelante
+// (en /sobre-nosotros y en el bloque "Quiénes somos" de la home). Estos datos
+// quedan aquí listos para volver a mostrarla.
 export const team = [
   { name: "Pedro de Gabriel", role: "CEO · Estrategia" },
   { name: "Aitor Mariscal", role: "Dirección de operaciones y clientes" },

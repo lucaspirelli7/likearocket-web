@@ -7,7 +7,7 @@ import CtaSection from "../components/CtaSection.astro";
 import Reveal from "../components/Reveal.astro";
 import Marquee from "../components/Marquee.astro";
 import { services } from "../data/services";
-import { primaryCta, secondaryCta, processSteps, team } from "../data/site";
+import { primaryCta, secondaryCta, processSteps } from "../data/site";
 import { getFeaturedResult } from "../data/results";
 
 const featured = getFeaturedResult();
@@ -130,26 +130,23 @@ const featured = getFeaturedResult();
   <!-- Quiénes somos, breve -->
   <section class="relative overflow-hidden bg-ink py-20 text-white sm:py-24">
     <div class="animate-blob pointer-events-none absolute -left-24 bottom-0 h-80 w-80 bg-magenta-500/20 blur-3xl"></div>
-    <div class="container-page relative grid gap-10 lg:grid-cols-[1fr_1fr]">
-      <Reveal variant="left">
+    <div class="animate-blob pointer-events-none absolute -right-24 top-0 h-72 w-72 bg-cyan-500/15 blur-3xl" style="animation-delay:-7s"></div>
+    <div class="container-page relative max-w-3xl text-center">
+      <Reveal>
         <span class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4" /> Quiénes somos</span>
-        <h2 class="mt-4 text-3xl sm:text-4xl">Un equipo pequeño que se mete en cada proyecto como si fuera propio.</h2>
-        <p class="mt-4 text-white/70">
-          Marketing, diseño web y tecnología bajo el mismo techo. Trabajamos desde España con
-          negocios locales y pymes que quieren crecer sin montar un departamento entero.
-        </p>
-        <a href="/sobre-nosotros" class="btn-ghost link-arrow mt-6 inline-flex">
+      </Reveal>
+      <Reveal as="h2" delay={80} class="mx-auto mt-4 text-3xl sm:text-4xl">
+        Un equipo pequeño que se mete en cada proyecto <span class="text-gradient">como si fuera propio</span>.
+      </Reveal>
+      <Reveal as="p" delay={150} class="mx-auto mt-4 max-w-xl text-white/70">
+        Marketing, diseño web y tecnología bajo el mismo techo. Trabajamos desde España con
+        negocios locales y pymes que quieren crecer sin montar un departamento entero.
+      </Reveal>
+      <Reveal delay={220} class="mt-8">
+        <a href="/sobre-nosotros" class="btn-ghost link-arrow inline-flex">
           Sobre nosotros <Icon name="arrow" class="h-4 w-4" />
         </a>
       </Reveal>
-      <ul class="grid gap-3 self-center sm:grid-cols-2">
-        {team.map((m, i) => (
-          <Reveal as="li" variant="right" delay={i * 80} class="card-hover rounded-xl border border-white/12 bg-white/5 p-4">
-            <p class="font-display font-semibold">{m.name}</p>
-            <p class="text-sm text-white/55">{m.role}</p>
-          </Reveal>
-        ))}
-      </ul>
     </div>
   </section>
 

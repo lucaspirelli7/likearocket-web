@@ -69,6 +69,11 @@ Netlify/Cloudflare). Ninguna URL actual puede quedar en 404.
 
 ## Pendientes antes de lanzar
 
+- [ ] **Sección "El equipo"**: retirada por ahora a petición del cliente. Los datos
+      siguen en `src/data/site.ts` (`team`). Volver a añadir el grid en
+      `/sobre-nosotros` y el bloque de la home cuando haya contenido definitivo
+      (nombres, roles y, si se quiere, fotos).
+
 - [ ] **Portafolio real** en `/diseno-web` (capturas + enlaces). Ahora son marcadores.
 - [ ] **Casos de `Resultados`**: confirmar permiso de nombre con cada cliente y añadir
       métricas verificadas. Datos base en `Contacto (res.partner).xlsx` y
