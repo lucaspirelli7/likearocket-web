@@ -1,0 +1,26 @@
+---
+import { primaryCta, secondaryCta } from "../data/site";
+import Icon from "./Icon.astro";
+interface Props {
+  title?: string;
+  body?: string;
+}
+const {
+  title = "Empecemos por un diagnóstico",
+  body = "30 minutos, sin compromiso. Te decimos qué mejorar primero y qué resultado esperar.",
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-ink text-white">
+  <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-magenta-500/25 blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-cyan-500/20 blur-3xl"></div>
+  <div class="container-page relative py-20 text-center">
+    <span class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4" /> Diagnóstico gratuito</span>
+    <h2 class="mx-auto mt-4 max-w-2xl text-3xl sm:text-4xl">{title}</h2>
+    <p class="mx-auto mt-4 max-w-xl text-white/70">{body}</p>
+    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <a href={primaryCta.href} class="btn-primary">{primaryCta.label}</a>
+      <a href={secondaryCta.href} class="btn-ghost">{secondaryCta.label}</a>
+    </div>
+  </div>
+</section>

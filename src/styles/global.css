@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/inter";
+
+/* ------------------------------------------------------------------
+   Like A Rocket — tokens de marca
+   Magenta #ff018b · Cian #00c4c2 · Navy #0d0d2b / #1a0533 · Amarillo #ffc107
+------------------------------------------------------------------ */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", "Inter Variable", sans-serif;
+
+  --color-ink: #0d0d2b;
+  --color-ink-deep: #1a0533;
+
+  --color-magenta-400: #ff3ba7;
+  --color-magenta-500: #ff018b;
+  --color-magenta-600: #cc0070;
+
+  --color-cyan-400: #2fd8d6;
+  --color-cyan-500: #00c4c2;
+  --color-cyan-600: #008f8e;
+
+  --color-gold-400: #ffcf3f;
+  --color-gold-500: #ffc107;
+
+  --color-cloud: #f6f7fb;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-ink font-sans antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display font-bold tracking-tight text-balance;
+  }
+
+  ::selection {
+    background-color: var(--color-magenta-500);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-magenta-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+.container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 72rem;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) {
+  .container-page { padding-inline: 2rem; }
+}
+
+.btn,
+.btn-primary,
+.btn-ghost,
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background-color: var(--color-magenta-500);
+  color: #fff;
+  box-shadow: 0 10px 30px -10px var(--color-magenta-500);
+}
+.btn-primary:hover { background-color: var(--color-magenta-600); }
+
+.btn-ghost {
+  border-color: color-mix(in srgb, #fff 25%, transparent);
+  color: #fff;
+}
+.btn-ghost:hover {
+  border-color: color-mix(in srgb, #fff 60%, transparent);
+  background-color: color-mix(in srgb, #fff 5%, transparent);
+}
+
+.btn-dark {
+  border-color: color-mix(in srgb, var(--color-ink) 15%, transparent);
+  color: var(--color-ink);
+}
+.btn-dark:hover {
+  border-color: color-mix(in srgb, var(--color-ink) 40%, transparent);
+  background-color: color-mix(in srgb, var(--color-ink) 5%, transparent);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-cyan-600);
+}
+
+.prose-lr {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--color-ink) 75%, transparent);
+}

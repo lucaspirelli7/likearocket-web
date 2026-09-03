@@ -1,0 +1,21 @@
+---
+import LegalLayout from "../layouts/LegalLayout.astro";
+import { site } from "../data/site";
+---
+<LegalLayout title="Aviso legal">
+  <h2>Titular del sitio web</h2>
+  <p>{site.legalName}, responsable del sitio <strong>{site.domain}</strong>. Correo de contacto: {site.email}. Teléfono: {site.phone}.</p>
+  <p>[Completar: NIF, domicilio social y datos de inscripción registral.]</p>
+
+  <h2>Condiciones de uso</h2>
+  <p>El acceso y uso de este sitio web atribuye la condición de usuario y implica la aceptación de las presentes condiciones. [Completar con la redacción definitiva.]</p>
+
+  <h2>Propiedad intelectual</h2>
+  <p>Los contenidos de este sitio (textos, imágenes, marcas y diseño) son titularidad de {site.legalName} o de terceros que han autorizado su uso. [Completar.]</p>
+
+  <h2>Responsabilidad</h2>
+  <p>[Completar cláusula de exención de responsabilidad y enlaces a terceros.]</p>
+
+  <h2>Legislación aplicable</h2>
+  <p>Estas condiciones se rigen por la legislación española. [Completar fuero.]</p>
+</LegalLayout>

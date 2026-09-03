@@ -1,0 +1,62 @@
+---
+// Formulario corto del brief: nombre, empresa, teléfono, sector y pregunta abierta.
+// `action` apunta a un endpoint de formulario (Formspree/Web3Forms/Netlify). Se
+// configura con PUBLIC_FORM_ENDPOINT; mientras no exista, hace fallback a mailto.
+import { site } from "../data/site";
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? "";
+const action = endpoint || `mailto:${site.email}`;
+const sectors = [
+  "Hostelería y restauración",
+  "Salud y bienestar",
+  "Servicios profesionales",
+  "Comercio y retail",
+  "Inmobiliaria y construcción",
+  "Turismo y ocio",
+  "Otro",
+];
+---
+
+<form
+  method="POST"
+  action={action}
+  class="grid gap-4 rounded-2xl border border-ink/10 bg-white p-6 sm:p-8"
+>
+  <div class="grid gap-4 sm:grid-cols-2">
+    <label class="text-sm font-medium text-ink/80">
+      Nombre*
+      <input required name="nombre" autocomplete="name"
+        class="mt-1.5 w-full rounded-xl border border-ink/15 px-3.5 py-2.5 text-sm outline-none focus:border-magenta-500" />
+    </label>
+    <label class="text-sm font-medium text-ink/80">
+      Empresa
+      <input name="empresa" autocomplete="organization"
+        class="mt-1.5 w-full rounded-xl border border-ink/15 px-3.5 py-2.5 text-sm outline-none focus:border-magenta-500" />
+    </label>
+    <label class="text-sm font-medium text-ink/80">
+      Teléfono*
+      <input required name="telefono" type="tel" autocomplete="tel"
+        class="mt-1.5 w-full rounded-xl border border-ink/15 px-3.5 py-2.5 text-sm outline-none focus:border-magenta-500" />
+    </label>
+    <label class="text-sm font-medium text-ink/80">
+      Sector
+      <select name="sector"
+        class="mt-1.5 w-full rounded-xl border border-ink/15 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-magenta-500">
+        <option value="">Selecciona…</option>
+        {sectors.map((s) => <option value={s}>{s}</option>)}
+      </select>
+    </label>
+  </div>
+  <label class="text-sm font-medium text-ink/80">
+    ¿Qué te gustaría conseguir?*
+    <textarea required name="mensaje" rows="4"
+      class="mt-1.5 w-full rounded-xl border border-ink/15 px-3.5 py-2.5 text-sm outline-none focus:border-magenta-500"></textarea>
+  </label>
+
+  {/* honeypot anti-spam */}
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+  <button type="submit" class="btn-primary mt-2 w-full sm:w-auto">Cuéntanos tu caso</button>
+  <p class="text-xs text-ink/50">
+    Al enviar aceptas nuestra política de privacidad. Te respondemos en menos de 24 h laborables.
+  </p>
+</form>

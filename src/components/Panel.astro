@@ -1,0 +1,18 @@
+---
+import Icon from "./Icon.astro";
+interface Props { title: string; tone?: "magenta" | "cyan" | "gold" | "ink" }
+const { title, tone = "magenta" } = Astro.props;
+const tones = {
+  magenta: "border-magenta-500/30 bg-magenta-500/5",
+  cyan: "border-cyan-500/30 bg-cyan-500/5",
+  gold: "border-gold-500/40 bg-gold-500/10",
+  ink: "border-ink/15 bg-cloud",
+};
+---
+<div class={`rounded-2xl border p-6 sm:p-8 ${tones[tone]}`}>
+  <h3 class="flex items-center gap-2 text-lg">
+    <Icon name="rocket" class="h-5 w-5 text-magenta-500" />
+    {title}
+  </h3>
+  <div class="prose-lr mt-3 space-y-3 text-base"><slot /></div>
+</div>

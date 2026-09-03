@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import ContactForm from "../components/ContactForm.astro";
+import { processSteps } from "../data/site";
+
+// Widget de agenda (Calendly / Cal.com). Se activa con PUBLIC_BOOKING_URL.
+const bookingUrl = import.meta.env.PUBLIC_BOOKING_URL ?? "";
+---
+
+<BaseLayout
+  title="Reserva tu diagnóstico gratuito"
+  description="Agenda 30 minutos con el equipo de Like A Rocket. Te decimos qué mejorar primero y qué resultado esperar. Sin compromiso."
+>
+  <section class="bg-ink text-white">
+    <div class="container-page py-16 lg:py-20">
+      <span class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4" /> Diagnóstico gratuito</span>
+      <h1 class="mt-5 max-w-3xl text-4xl leading-tight sm:text-5xl">
+        Reserva tu diagnóstico gratuito.
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg text-white/70">
+        30 minutos por videollamada. Revisamos tu presencia digital y te decimos qué mejorar
+        primero y qué resultado esperar. Sin compromiso y sin venderte un paquete.
+      </p>
+    </div>
+  </section>
+
+  <div class="container-page grid gap-10 py-16 sm:py-20 lg:grid-cols-[1fr_1fr]">
+    <div>
+      <h2 class="text-2xl">Qué pasa en la llamada</h2>
+      <ol class="mt-6 space-y-4">
+        {processSteps.map((s, i) => (
+          <li class="flex gap-4">
+            <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-magenta-500/10 font-display text-sm font-bold text-magenta-600">
+              {i + 1}
+            </span>
+            <div>
+              <p class="font-display font-semibold">{s.title}</p>
+              <p class="text-sm leading-relaxed text-ink/70">{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div>
+      {bookingUrl ? (
+        <div class="overflow-hidden rounded-2xl border border-ink/10">
+          <iframe src={bookingUrl} title="Reservar cita" class="h-[680px] w-full" loading="lazy"></iframe>
+        </div>
+      ) : (
+        <div>
+          <div class="mb-4 rounded-xl border border-gold-500/40 bg-gold-500/10 p-4 text-sm text-ink/70">
+            <Icon name="rocket" class="mr-1 inline h-4 w-4 text-gold-500" />
+            Marcador de posición: aquí se incrusta el calendario (Calendly / Cal.com). Mientras
+            tanto, usa el formulario y te proponemos hora.
+          </div>
+          <ContactForm />
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

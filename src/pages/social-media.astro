@@ -1,0 +1,50 @@
+---
+import ServiceLayout from "../layouts/ServiceLayout.astro";
+import CheckList from "../components/CheckList.astro";
+---
+
+<ServiceLayout
+  slug="social-media"
+  intro="Presencia constante en redes sin que tengas que pensarlo. Nosotros creamos y publicamos; tú apruebas antes de que salga nada."
+>
+  <section>
+    <span class="eyebrow">Qué hacemos</span>
+    <div class="mt-4">
+      <CheckList items={[
+        "Entre 4 y 6 publicaciones al mes con diseño alineado a tu marca",
+        "Calendario de contenidos planificado por adelantado",
+        "Publicación en tus perfiles principales (Instagram, Facebook, Google)",
+        "Textos y creatividades incluidos",
+      ]} />
+    </div>
+  </section>
+
+  <section class="rounded-2xl border border-cyan-500/30 bg-cyan-500/5 p-6 sm:p-8">
+    <h2 class="text-xl">Cómo apruebas el contenido</h2>
+    <p class="prose-lr mt-3 text-base">
+      Antes de publicar nada, recibes la propuesta del mes: textos e imágenes. Marcas lo que
+      cambiarías, lo ajustamos y solo entonces se programa. Nada sale sin tu visto bueno.
+    </p>
+  </section>
+
+  <section class="rounded-2xl border border-ink/15 bg-cloud p-6 sm:p-8">
+    <h2 class="text-xl">Qué no incluye</h2>
+    <p class="prose-lr mt-3 text-base">
+      No incluye responder mensajes y comentarios, ni sesiones de fotos, ni campañas de pago.
+      Esas necesidades se cubren aparte.
+    </p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Ejemplos</span>
+    <h2 class="mt-3 text-2xl sm:text-3xl">Publicaciones reales, en formato móvil.</h2>
+    <div class="mt-6 flex gap-4 overflow-x-auto pb-2">
+      {Array.from({ length: 4 }).map(() => (
+        <div class="w-56 shrink-0 overflow-hidden rounded-[2rem] border-4 border-ink/80 bg-white">
+          <div class="aspect-[9/19] bg-gradient-to-b from-magenta-500/20 via-white to-cyan-500/20"></div>
+        </div>
+      ))}
+    </div>
+    <p class="mt-3 text-sm text-ink/55">Marcador de posición para capturas de publicaciones reales.</p>
+  </section>
+</ServiceLayout>

@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import CtaSection from "../components/CtaSection.astro";
+import { team, site } from "../data/site";
+
+const valores = [
+  { t: "Simpleza", d: "Menos ruido, más claridad. Cada acción tiene un porqué que te podemos explicar en una frase." },
+  { t: "Orientación a resultado", d: "Trabajamos sobre números concretos: contactos, llamadas, formularios. No sobre impresiones vacías." },
+  { t: "Transparencia", d: "Tú apruebas lo que sale a la calle. Informe cada mes, sin jerga y sin letra pequeña." },
+  { t: "Cercanía", d: "Equipo pequeño. Hablas con quien hace el trabajo, no con una capa de gestión." },
+];
+---
+
+<BaseLayout
+  title="Sobre nosotros"
+  description="Quiénes somos, desde cuándo y cómo trabajamos en Like A Rocket."
+>
+  <section class="bg-ink text-white">
+    <div class="container-page py-16 lg:py-24">
+      <span class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4" /> Sobre nosotros</span>
+      <h1 class="mt-5 max-w-3xl text-4xl leading-tight sm:text-5xl">
+        Una agencia pequeña, metida en cada proyecto como si fuera suyo.
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg text-white/70">
+        {site.legalName}. Marketing, diseño web y tecnología bajo el mismo techo, trabajando
+        desde España con negocios locales y pymes.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page py-16 sm:py-20">
+    <div class="grid gap-10 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <h2 class="text-2xl sm:text-3xl">Cómo trabajamos</h2>
+        <div class="prose-lr mt-4 space-y-4">
+          <p>
+            Empezamos siempre por un diagnóstico: entender el negocio, el sector y a dónde quiere
+            llegar. De ahí sale una propuesta concreta, con un orden y un número que esperamos mover.
+          </p>
+          <p>
+            Ejecutamos por fases, enseñando el trabajo antes de publicarlo, y cada mes entregamos
+            un informe de lo que se hizo y cómo evolucionan las métricas. Sin permanencias
+            innecesarias y sin paquetes cerrados: cada servicio se presupuesta caso a caso.
+          </p>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-2xl sm:text-3xl">Lo que nos importa</h2>
+        <ul class="mt-4 space-y-3">
+          {valores.map((v) => (
+            <li class="rounded-2xl border border-ink/10 bg-white p-5">
+              <p class="font-display font-semibold">{v.t}</p>
+              <p class="mt-1 text-sm leading-relaxed text-ink/70">{v.d}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cloud py-16 sm:py-20">
+    <div class="container-page">
+      <h2 class="text-2xl sm:text-3xl">El equipo</h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {team.map((m) => (
+          <div class="rounded-2xl border border-ink/10 bg-white p-6">
+            <div class="grid h-12 w-12 place-items-center rounded-full bg-ink text-magenta-400">
+              <Icon name="rocket" class="h-6 w-6" />
+            </div>
+            <p class="mt-4 font-display font-semibold">{m.name}</p>
+            <p class="text-sm text-ink/60">{m.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page py-16">
+    <div class="grid gap-6 rounded-3xl border border-ink/10 bg-white p-8 sm:grid-cols-2 sm:p-12">
+      <div>
+        <h2 class="text-xl">Dónde estamos</h2>
+        <p class="prose-lr mt-2 text-base">Trabajamos en remoto con clientes de toda España. {site.hours}.</p>
+      </div>
+      <div>
+        <h2 class="text-xl">Cómo contactar</h2>
+        <ul class="mt-2 space-y-1.5 text-sm text-ink/75">
+          <li><a class="hover:text-magenta-600" href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
+          <li><a class="hover:text-magenta-600" href={`mailto:${site.email}`}>{site.email}</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

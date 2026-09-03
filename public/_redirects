@@ -1,0 +1,7 @@
+# Redirecciones 301 (brief §5). Formato Netlify / Cloudflare Pages.
+# En Vercel se replican en astro.config.mjs y en vercel.json.
+/que-ofrecemos      /seo-local-geo   301
+/planes             /                301
+/about-us           /sobre-nosotros  301
+/appointment        /cita            301
+# /shop y /forum se retiran del menú (no redirigen: devuelven 404 controlado).

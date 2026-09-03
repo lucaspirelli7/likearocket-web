@@ -1,0 +1,56 @@
+---
+import ServiceLayout from "../layouts/ServiceLayout.astro";
+import Panel from "../components/Panel.astro";
+import CheckList from "../components/CheckList.astro";
+---
+
+<ServiceLayout
+  slug="seo-local-geo"
+  intro="Que te encuentren cuando alguien busca lo que haces, cerca de donde estás. En Google y también en los buscadores de IA como ChatGPT y Perplexity."
+>
+  <section class="rounded-2xl border border-ink/15 bg-cloud p-6 sm:p-8">
+    <h2 class="text-xl">El problema, en corto</h2>
+    <p class="prose-lr mt-3 text-base">
+      Tener ficha no es lo mismo que aparecer. Muchos negocios están dados de alta en Google
+      pero no salen cuando alguien busca su servicio en su zona: la ficha está incompleta, sin
+      reseñas recientes o con datos que no coinciden con los de la web y los directorios.
+    </p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Qué hacemos</span>
+    <h2 class="mt-3 text-2xl sm:text-3xl">SEO local, de la ficha al mapa.</h2>
+    <div class="mt-6">
+      <CheckList items={[
+        "Ficha de Google: categorías, atributos, descripción y fotos",
+        "Publicaciones periódicas en la ficha",
+        "Gestión de reseñas: solicitud y respuesta",
+        "Alta y limpieza en directorios locales",
+        "Coherencia de nombre, dirección y teléfono en toda la red",
+        "Seguimiento de posición en el mapa por búsquedas clave",
+      ]} />
+    </div>
+  </section>
+
+  <Panel title="GEO — aparecer en los buscadores de IA" tone="gold">
+    <p>
+      GEO son las siglas de <em>Generative Engine Optimization</em>. Cuando alguien le pregunta a
+      ChatGPT, Perplexity o Google por "el mejor [tu sector] en [tu ciudad]", esas herramientas
+      responden con una recomendación. GEO es el trabajo de que tu negocio sea uno de los que
+      aparecen en esa respuesta.
+    </p>
+    <p>
+      Es una disciplina nueva: casi ninguna agencia la ofrece todavía. Se apoya en tener datos
+      coherentes y bien estructurados entre tu web, tu ficha y los directorios, de forma que los
+      modelos de IA "entiendan" a qué te dedicas y dónde.
+    </p>
+  </Panel>
+
+  <section class="rounded-2xl border border-ink/15 bg-cloud p-6 sm:p-8">
+    <h2 class="text-xl">Qué no incluye</h2>
+    <p class="prose-lr mt-3 text-base">
+      El rediseño de la web, los contenidos de blog y las campañas de pago van aparte. Este
+      servicio se centra en la presencia local y en los buscadores.
+    </p>
+  </section>
+</ServiceLayout>

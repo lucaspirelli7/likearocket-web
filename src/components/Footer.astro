@@ -1,0 +1,57 @@
+---
+import { site, nav, primaryCta } from "../data/site";
+import { services } from "../data/services";
+import Icon from "./Icon.astro";
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink text-white/70">
+  <div class="container-page grid gap-10 py-16 md:grid-cols-[1.2fr_1fr_1fr]">
+    <div>
+      <a href="/" class="flex items-center gap-2 font-display text-lg font-bold text-white">
+        <span class="grid h-8 w-8 place-items-center rounded-lg bg-white/10 text-magenta-400">
+          <Icon name="rocket" class="h-5 w-5" />
+        </span>
+        Like A Rocket
+      </a>
+      <p class="mt-4 max-w-xs text-sm leading-relaxed">
+        {site.tagline}. Agencia de marketing digital.
+      </p>
+      <a href={primaryCta.href} class="btn-primary mt-6 inline-flex">{primaryCta.label}</a>
+    </div>
+
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-white/40">Servicios</p>
+      <ul class="mt-4 space-y-2 text-sm">
+        {services.map((s) => (
+          <li><a class="hover:text-white" href={`/${s.slug}`}>{s.name}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-white/40">Agencia</p>
+      <ul class="mt-4 space-y-2 text-sm">
+        {nav.filter((n) => !("children" in n)).map((n) => (
+          <li><a class="hover:text-white" href={n.href}>{n.label}</a></li>
+        ))}
+      </ul>
+      <ul class="mt-6 space-y-2 text-sm">
+        <li><a class="flex items-center gap-2 hover:text-white" href={`tel:${site.phoneHref}`}><Icon name="phone" class="h-4 w-4" />{site.phone}</a></li>
+        <li><a class="flex items-center gap-2 hover:text-white" href={`mailto:${site.email}`}><Icon name="mail" class="h-4 w-4" />{site.email}</a></li>
+        <li><a class="flex items-center gap-2 hover:text-white" href={site.whatsapp}><Icon name="whatsapp" class="h-4 w-4" />WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-page flex flex-col gap-2 py-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {site.legalName}. Todos los derechos reservados.</p>
+      <div class="flex gap-4">
+        <a class="hover:text-white" href="/aviso-legal">Aviso legal</a>
+        <a class="hover:text-white" href="/privacidad">Privacidad</a>
+        <a class="hover:text-white" href="/cookies">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
