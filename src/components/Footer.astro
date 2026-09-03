@@ -1,5 +1,5 @@
 ---
-import { site, nav, primaryCta } from "../data/site";
+import { site, nav } from "../data/site";
 import { services } from "../data/services";
 import Icon from "./Icon.astro";
 const year = new Date().getFullYear();
@@ -14,7 +14,6 @@ const year = new Date().getFullYear();
       <p class="mt-4 max-w-xs text-sm leading-relaxed">
         {site.tagline}. Agencia de marketing digital.
       </p>
-      <a href={primaryCta.href} class="btn-primary mt-6 inline-flex">{primaryCta.label}</a>
     </div>
 
     <div>

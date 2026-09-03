@@ -13,11 +13,13 @@ const {
 ---
 
 <section class="relative overflow-hidden bg-ink text-white">
-  <div class="animate-blob pointer-events-none absolute -right-24 -top-24 h-80 w-80 bg-magenta-500/30 blur-3xl"></div>
-  <div class="animate-blob pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 bg-cyan-500/25 blur-3xl" style="animation-delay:-8s"></div>
+  <div class="pointer-events-none absolute inset-0 opacity-60">
+    <div class="animate-blob absolute right-[-10%] top-[-30%] h-72 w-72 bg-magenta-500/25 blur-3xl"></div>
+    <div class="animate-blob absolute bottom-[-40%] left-[-8%] h-72 w-72 bg-cyan-500/18 blur-3xl" style="animation-delay:-8s"></div>
+  </div>
   <div class="container-page relative py-20 text-center sm:py-24">
     <Reveal>
-      <span class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4 animate-float" /> Diagnóstico gratuito</span>
+      <span class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4" /> Diagnóstico gratuito</span>
     </Reveal>
     <Reveal as="h2" delay={80} class="mx-auto mt-4 max-w-2xl text-3xl sm:text-4xl">{title}</Reveal>
     <Reveal as="p" delay={140} class="mx-auto mt-4 max-w-xl text-white/70">{body}</Reveal>
