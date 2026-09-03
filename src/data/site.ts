@@ -15,6 +15,7 @@ export const site = {
 
 export const primaryCta = {
   label: "Reserva tu diagnóstico gratuito",
+  shortLabel: "Diagnóstico gratuito", // versión compacta (cabecera)
   href: "/cita",
 } as const;
 

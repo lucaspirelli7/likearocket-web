@@ -3,13 +3,14 @@ import { site, nav } from "../data/site";
 import { services } from "../data/services";
 import Icon from "./Icon.astro";
 const year = new Date().getFullYear();
+const agencia = nav.filter((n) => !("children" in n));
 ---
 
-<footer class="border-t border-white/10 bg-ink text-white/70">
-  <div class="container-page grid gap-10 py-16 md:grid-cols-[1.2fr_1fr_1fr]">
+<footer class="border-t border-white/10 bg-footer text-white/65">
+  <div class="container-page grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
     <div>
       <a href="/" class="inline-flex" aria-label="Like A Rocket — inicio">
-        <img src="/brand/logo-white.png" alt="Like A Rocket" width="1154" height="516" class="h-10 w-auto" />
+        <img src="/brand/logo-white.png" alt="Like A Rocket" width="1154" height="516" class="h-9 w-auto" />
       </a>
       <p class="mt-4 max-w-xs text-sm leading-relaxed">
         {site.tagline}. Agencia de marketing digital.
@@ -18,35 +19,39 @@ const year = new Date().getFullYear();
 
     <div>
       <p class="text-xs font-semibold uppercase tracking-[0.18em] text-white/40">Servicios</p>
-      <ul class="mt-4 space-y-2 text-sm">
+      <ul class="mt-4 space-y-2.5 text-sm">
         {services.map((s) => (
-          <li><a class="hover:text-white" href={`/${s.slug}`}>{s.name}</a></li>
+          <li><a class="transition hover:text-white" href={`/${s.slug}`}>{s.name}</a></li>
         ))}
       </ul>
     </div>
 
     <div>
       <p class="text-xs font-semibold uppercase tracking-[0.18em] text-white/40">Agencia</p>
-      <ul class="mt-4 space-y-2 text-sm">
-        {nav.filter((n) => !("children" in n)).map((n) => (
-          <li><a class="hover:text-white" href={n.href}>{n.label}</a></li>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        {agencia.map((n) => (
+          <li><a class="transition hover:text-white" href={n.href}>{n.label}</a></li>
         ))}
       </ul>
-      <ul class="mt-6 space-y-2 text-sm">
-        <li><a class="flex items-center gap-2 hover:text-white" href={`tel:${site.phoneHref}`}><Icon name="phone" class="h-4 w-4" />{site.phone}</a></li>
-        <li><a class="flex items-center gap-2 hover:text-white" href={`mailto:${site.email}`}><Icon name="mail" class="h-4 w-4" />{site.email}</a></li>
-        <li><a class="flex items-center gap-2 hover:text-white" href={site.whatsapp}><Icon name="whatsapp" class="h-4 w-4" />WhatsApp</a></li>
+    </div>
+
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-white/40">Contacto</p>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        <li><a class="flex items-center gap-2 transition hover:text-white" href={`tel:${site.phoneHref}`}><Icon name="phone" class="h-4 w-4 shrink-0" />{site.phone}</a></li>
+        <li><a class="flex items-center gap-2 transition hover:text-white" href={`mailto:${site.email}`}><Icon name="mail" class="h-4 w-4 shrink-0" />{site.email}</a></li>
+        <li><a class="flex items-center gap-2 transition hover:text-white" href={site.whatsapp}><Icon name="whatsapp" class="h-4 w-4 shrink-0" />WhatsApp</a></li>
       </ul>
     </div>
   </div>
 
   <div class="border-t border-white/10">
-    <div class="container-page flex flex-col gap-2 py-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
+    <div class="container-page flex flex-col gap-2 py-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
       <p>© {year} {site.legalName}. Todos los derechos reservados.</p>
       <div class="flex gap-4">
-        <a class="hover:text-white" href="/aviso-legal">Aviso legal</a>
-        <a class="hover:text-white" href="/privacidad">Privacidad</a>
-        <a class="hover:text-white" href="/cookies">Cookies</a>
+        <a class="transition hover:text-white" href="/aviso-legal">Aviso legal</a>
+        <a class="transition hover:text-white" href="/privacidad">Privacidad</a>
+        <a class="transition hover:text-white" href="/cookies">Cookies</a>
       </div>
     </div>
   </div>

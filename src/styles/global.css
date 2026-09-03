@@ -45,6 +45,9 @@
   /* lavanda: fondo neutro de marca */
   --color-cloud: #efeafb;
   --color-cloud-deep: #e4dbf8;
+
+  /* pie: gris-violáceo apagado, un punto más claro que la tinta */
+  --color-footer: #262234;
 }
 
 @layer base {
@@ -106,6 +109,14 @@
   .btn-primary:hover,
   .btn-ghost:hover,
   .btn-dark:hover { transform: translateY(-2px); }
+
+  /* variante compacta (cabecera) */
+  .btn-sm {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.8rem;
+    border-width: 1.5px;
+  }
+  .btn-sm.btn-primary { box-shadow: 0 8px 22px -12px var(--color-magenta-500); }
 
   .btn-primary {
     background-color: var(--color-magenta-500);
