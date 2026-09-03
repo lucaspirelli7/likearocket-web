@@ -1,0 +1,148 @@
+---
+/**
+ * Maqueta de sitio web dentro de una ventana de navegador (SVG).
+ * Marcador de posición realista para el portafolio: NO son capturas reales,
+ * se sustituyen por screenshots/enlaces de proyectos publicados antes de lanzar.
+ */
+interface Props {
+  variant?: 1 | 2 | 3 | 4;
+  accent?: string; // color de marca
+  accent2?: string;
+  label?: string; // texto de la barra de direcciones
+  class?: string;
+}
+const {
+  variant = 1,
+  accent = "#f20587",
+  accent2 = "#0fc2c0",
+  label = "tu-negocio.es",
+  class: klass = "",
+} = Astro.props;
+
+const ink = "#190a33";
+const line = "#e7e3f0";
+const soft = "#cfc9dd";
+const page = "#ffffff";
+
+// id único por instancia (evita colisiones entre varias maquetas en la página)
+const uid = Math.random().toString(36).slice(2, 8);
+const phId = `ph-${uid}`;
+const clipId = `round-${uid}`;
+---
+
+<svg class={klass} viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={`Maqueta de sitio web — ${label}`}>
+  <defs>
+    <linearGradient id={phId} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color={accent} />
+      <stop offset="1" stop-color={accent2} />
+    </linearGradient>
+    <clipPath id={clipId}><rect x="0" y="0" width="400" height="300" rx="10" /></clipPath>
+  </defs>
+
+  <g clip-path={`url(#${clipId})`}>
+    <rect width="400" height="300" fill={page} />
+
+    <!-- chrome del navegador -->
+    <rect width="400" height="26" fill="#f4f2f8" />
+    <circle cx="14" cy="13" r="3.5" fill="#ff5f57" />
+    <circle cx="26" cy="13" r="3.5" fill="#febc2e" />
+    <circle cx="38" cy="13" r="3.5" fill="#28c840" />
+    <rect x="54" y="7" width="300" height="12" rx="6" fill="#fff" />
+    <text x="66" y="16" font-family="system-ui, sans-serif" font-size="8" fill="#9a93ad">{label}</text>
+
+    <!-- nav del sitio -->
+    <rect x="0" y="26" width="400" height="26" fill="#fff" />
+    <rect x="20" y="35" width="34" height="8" rx="2" fill={ink} />
+    <rect x="250" y="37" width="20" height="4" rx="2" fill={soft} />
+    <rect x="278" y="37" width="20" height="4" rx="2" fill={soft} />
+    <rect x="306" y="37" width="20" height="4" rx="2" fill={soft} />
+    <rect x="336" y="32" width="44" height="14" rx="7" fill={accent} />
+    <line x1="0" y1="52" x2="400" y2="52" stroke={line} />
+
+    {variant === 1 && (
+      <g>
+        {/* landing: hero centrado + 3 tarjetas */}
+        <rect x="90" y="72" width="220" height="12" rx="3" fill={ink} />
+        <rect x="120" y="90" width="160" height="12" rx="3" fill={ink} />
+        <rect x="130" y="112" width="140" height="6" rx="3" fill={soft} />
+        <rect x="160" y="124" width="80" height="16" rx="8" fill={accent} />
+        <rect x="60" y="158" width="280" height="70" rx="6" fill={`url(#${phId})`} />
+        <g>
+          <rect x="60" y="240" width="86" height="44" rx="5" fill="#faf8fe" stroke={line} />
+          <rect x="157" y="240" width="86" height="44" rx="5" fill="#faf8fe" stroke={line} />
+          <rect x="254" y="240" width="86" height="44" rx="5" fill="#faf8fe" stroke={line} />
+          <circle cx="72" cy="252" r="5" fill={accent2} />
+          <circle cx="169" cy="252" r="5" fill={accent} />
+          <circle cx="266" cy="252" r="5" fill={accent2} />
+        </g>
+      </g>
+    )}
+
+    {variant === 2 && (
+      <g>
+        {/* corporativa: hero partido + fila de datos */}
+        <rect x="24" y="72" width="150" height="10" rx="3" fill={ink} />
+        <rect x="24" y="88" width="120" height="10" rx="3" fill={ink} />
+        <rect x="24" y="108" width="150" height="5" rx="2" fill={soft} />
+        <rect x="24" y="118" width="130" height="5" rx="2" fill={soft} />
+        <rect x="24" y="134" width="70" height="15" rx="7" fill={accent} />
+        <rect x="200" y="66" width="176" height="120" rx="6" fill={`url(#${phId})`} />
+        <g>
+          <rect x="24" y="206" width="352" height="70" rx="6" fill="#faf8fe" stroke={line} />
+          <rect x="44" y="224" width="26" height="14" rx="2" fill={accent} />
+          <rect x="44" y="246" width="60" height="5" rx="2" fill={soft} />
+          <rect x="150" y="224" width="26" height="14" rx="2" fill={accent2} />
+          <rect x="150" y="246" width="60" height="5" rx="2" fill={soft} />
+          <rect x="256" y="224" width="26" height="14" rx="2" fill={accent} />
+          <rect x="256" y="246" width="60" height="5" rx="2" fill={soft} />
+        </g>
+      </g>
+    )}
+
+    {variant === 3 && (
+      <g>
+        {/* reservas: hero + tarjeta de formulario */}
+        <rect x="24" y="74" width="150" height="10" rx="3" fill={ink} />
+        <rect x="24" y="90" width="110" height="10" rx="3" fill={ink} />
+        <rect x="24" y="110" width="150" height="5" rx="2" fill={soft} />
+        <rect x="24" y="150" width="176" height="70" rx="6" fill={`url(#${phId})`} />
+        <g>
+          <rect x="220" y="70" width="156" height="150" rx="8" fill="#fff" stroke={line} />
+          <rect x="236" y="86" width="80" height="8" rx="2" fill={ink} />
+          <rect x="236" y="104" width="124" height="12" rx="3" fill="#faf8fe" stroke={line} />
+          <rect x="236" y="124" width="124" height="12" rx="3" fill="#faf8fe" stroke={line} />
+          <rect x="236" y="144" width="124" height="12" rx="3" fill="#faf8fe" stroke={line} />
+          <rect x="236" y="168" width="124" height="16" rx="8" fill={accent} />
+        </g>
+        <rect x="24" y="240" width="352" height="40" rx="6" fill={`url(#${phId})`} opacity="0.85" />
+      </g>
+    )}
+
+    {variant === 4 && (
+      <g>
+        {/* servicios: hero + rejilla 2x2 */}
+        <rect x="24" y="72" width="170" height="11" rx="3" fill={ink} />
+        <rect x="24" y="90" width="130" height="11" rx="3" fill={ink} />
+        <rect x="24" y="110" width="150" height="5" rx="2" fill={soft} />
+        <rect x="24" y="120" width="120" height="5" rx="2" fill={soft} />
+        <rect x="240" y="66" width="136" height="66" rx="6" fill={`url(#${phId})`} />
+        <g>
+          <rect x="24" y="150" width="170" height="60" rx="6" fill="#faf8fe" stroke={line} />
+          <rect x="206" y="150" width="170" height="60" rx="6" fill="#faf8fe" stroke={line} />
+          <rect x="24" y="220" width="170" height="60" rx="6" fill="#faf8fe" stroke={line} />
+          <rect x="206" y="220" width="170" height="60" rx="6" fill="#faf8fe" stroke={line} />
+          <rect x="40" y="164" width="16" height="16" rx="4" fill={accent} />
+          <rect x="222" y="164" width="16" height="16" rx="4" fill={accent2} />
+          <rect x="40" y="234" width="16" height="16" rx="4" fill={accent2} />
+          <rect x="222" y="234" width="16" height="16" rx="4" fill={accent} />
+          <rect x="40" y="188" width="90" height="5" rx="2" fill={soft} />
+          <rect x="222" y="188" width="90" height="5" rx="2" fill={soft} />
+          <rect x="40" y="258" width="90" height="5" rx="2" fill={soft} />
+          <rect x="222" y="258" width="90" height="5" rx="2" fill={soft} />
+        </g>
+      </g>
+    )}
+  </g>
+
+  <rect x="0.5" y="0.5" width="399" height="299" rx="10" fill="none" stroke={line} />
+</svg>
