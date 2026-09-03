@@ -3,6 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import CtaSection from "../components/CtaSection.astro";
 import MetricNote from "../components/MetricNote.astro";
+import Reveal from "../components/Reveal.astro";
 import { getService, services } from "../data/services";
 import { primaryCta } from "../data/site";
 
@@ -19,24 +20,34 @@ const accentText = {
   cyan: "text-cyan-400",
   lime: "text-lime-500",
 }[service.accent];
+const blob = {
+  magenta: "bg-magenta-500/25",
+  cyan: "bg-cyan-500/25",
+  lime: "bg-lime-500/15",
+}[service.accent];
 ---
 
 <BaseLayout title={`${service.name} — ${service.descriptor}`} description={service.promise}>
   <section class="relative overflow-hidden bg-ink text-white">
-    <div class="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-magenta-500/20 blur-3xl"></div>
+    <div class={`animate-blob pointer-events-none absolute -top-32 right-0 h-96 w-96 ${blob} blur-3xl`}></div>
+    <div class="animate-float-slow pointer-events-none absolute -bottom-24 left-1/4 h-72 w-72 rounded-full bg-purple-500/20 blur-3xl"></div>
     <div class="container-page relative py-16 lg:py-24">
-      <p class="flex items-center gap-2 text-sm text-white/50">
+      <Reveal as="p" class="flex items-center gap-2 text-sm text-white/50">
         <a href="/" class="hover:text-white">Inicio</a>
         <Icon name="arrow" class="h-3 w-3" />
         <span class={accentText}>{service.name}</span>
-      </p>
-      <h1 class="mt-5 max-w-3xl text-4xl leading-tight sm:text-5xl">{service.descriptor}</h1>
-      <p class="mt-5 max-w-2xl text-lg text-white/70">{intro}</p>
-      <a href={primaryCta.href} class="btn-primary mt-8">{primaryCta.label}</a>
+      </Reveal>
+      <Reveal as="h1" delay={70} class="mt-5 max-w-3xl text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
+        {service.descriptor}
+      </Reveal>
+      <Reveal as="p" delay={140} class="mt-5 max-w-2xl text-lg text-white/70">{intro}</Reveal>
+      <Reveal delay={210} class="mt-8">
+        <a href={primaryCta.href} class="btn-primary">{primaryCta.label}</a>
+      </Reveal>
     </div>
   </section>
 
-  <div class="container-page space-y-16 py-16 sm:space-y-20 sm:py-20">
+  <div class="container-page service-body space-y-16 py-16 sm:space-y-20 sm:py-20">
     <slot />
 
     <MetricNote>{service.metric}</MetricNote>
@@ -44,13 +55,16 @@ const accentText = {
 
   <section class="bg-cloud py-16">
     <div class="container-page">
-      <h2 class="text-2xl">Otros servicios</h2>
+      <Reveal as="h2" class="text-2xl">Otros servicios</Reveal>
       <div class="mt-6 grid gap-4 sm:grid-cols-3">
-        {others.map((s) => (
-          <a href={`/${s.slug}`} class="rounded-2xl border border-ink/10 bg-white p-5 transition hover:border-ink/25">
-            <p class="font-display font-semibold">{s.name}</p>
-            <p class="mt-1 text-sm text-ink/60">{s.descriptor}</p>
-          </a>
+        {others.map((s, i) => (
+          <Reveal delay={i * 90} class="h-full">
+            <a href={`/${s.slug}`} class="group card-hover flex h-full flex-col rounded-2xl border-2 border-ink/10 bg-white p-5 hover:border-ink/20">
+              <p class="font-display font-semibold">{s.name}</p>
+              <p class="mt-1 text-sm text-ink/60">{s.descriptor}</p>
+              <span class="link-arrow mt-3 inline-flex text-magenta-600"><Icon name="arrow" class="h-4 w-4" /></span>
+            </a>
+          </Reveal>
         ))}
       </div>
     </div>
@@ -58,3 +72,29 @@ const accentText = {
 
   <CtaSection />
 </BaseLayout>
+
+<script>
+  // Marca cada bloque de contenido de la página de servicio para el revelado
+  // por scroll y lo observa (self-contained, compatible con View Transitions).
+  const initServiceReveal = () => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll<HTMLElement>(".service-body > *").forEach((el, i) => {
+      if (el.classList.contains("reveal")) return;
+      // no ocultes lo que ya está en pantalla (evita parpadeo)
+      const r = el.getBoundingClientRect();
+      if (reduce || r.top < window.innerHeight * 0.9) return;
+      el.classList.add("reveal");
+      el.style.setProperty("--rv-delay", String((i % 3) * 60));
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add("is-visible"); io.disconnect(); }
+        }),
+        { rootMargin: "0px 0px -8% 0px", threshold: 0.1 },
+      );
+      io.observe(el);
+      setTimeout(() => el.classList.add("is-visible"), 2500);
+    });
+  };
+  initServiceReveal();
+  document.addEventListener("astro:page-load", initServiceReveal);
+</script>

@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import ContactForm from "../components/ContactForm.astro";
+import Reveal from "../components/Reveal.astro";
 import { site } from "../data/site";
 ---
 
@@ -9,13 +10,16 @@ import { site } from "../data/site";
   title="Contacto"
   description="Cuéntanos tu caso. Consultoría gratuita y sin compromiso. Respondemos en menos de 24 h laborables."
 >
-  <section class="bg-ink text-white">
-    <div class="container-page py-16 lg:py-20">
-      <span class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4" /> Contacto</span>
-      <h1 class="mt-5 max-w-3xl text-4xl leading-tight sm:text-5xl">Hablemos de tu negocio.</h1>
-      <p class="mt-5 max-w-2xl text-lg text-white/70">
+  <section class="relative overflow-hidden bg-ink text-white">
+    <div class="animate-blob pointer-events-none absolute -right-24 -top-24 h-96 w-96 bg-lime-500/15 blur-3xl"></div>
+    <div class="container-page relative py-16 lg:py-20">
+      <Reveal as="span" class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4 animate-float" /> Contacto</Reveal>
+      <Reveal as="h1" delay={80} class="mt-5 max-w-3xl text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
+        Hablemos de <span class="text-gradient">tu negocio</span>.
+      </Reveal>
+      <Reveal as="p" delay={150} class="mt-5 max-w-2xl text-lg text-white/70">
         Cuéntanos tu situación y te decimos cómo podemos ayudarte. Sin compromiso.
-      </p>
+      </Reveal>
     </div>
   </section>
 

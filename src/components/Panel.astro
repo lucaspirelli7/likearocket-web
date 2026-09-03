@@ -5,14 +5,23 @@ const { title, tone = "magenta" } = Astro.props;
 const tones = {
   magenta: "border-magenta-500/30 bg-magenta-500/5",
   cyan: "border-cyan-500/30 bg-cyan-500/5",
-  lime: "border-lime-500/40 bg-lime-500/10",
+  lime: "border-lime-500/50 bg-lime-500/10",
   ink: "border-ink/15 bg-cloud",
 };
+const iconColor = {
+  magenta: "bg-magenta-500 text-white",
+  cyan: "bg-cyan-500 text-white",
+  lime: "bg-lime-500 text-ink",
+  ink: "bg-ink text-white",
+}[tone];
 ---
-<div class={`rounded-2xl border p-6 sm:p-8 ${tones[tone]}`}>
-  <h3 class="flex items-center gap-2 text-lg">
-    <Icon name="rocket" class="h-5 w-5 text-magenta-500" />
+<div class={`relative overflow-hidden rounded-2xl border-2 p-6 sm:p-8 ${tones[tone]}`}>
+  <div class="animate-float-slow pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-white/40 blur-2xl"></div>
+  <h3 class="relative flex items-center gap-3 text-lg">
+    <span class={`grid h-9 w-9 shrink-0 place-items-center rounded-xl ${iconColor}`}>
+      <Icon name="rocket" class="h-5 w-5" />
+    </span>
     {title}
   </h3>
-  <div class="prose-lr mt-3 space-y-3 text-base"><slot /></div>
+  <div class="prose-lr relative mt-4 space-y-3 text-base"><slot /></div>
 </div>

@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { site } from "../data/site";
@@ -43,6 +44,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
     <meta property="og:image" content={new URL(image, Astro.site ?? Astro.url).href} />
     <meta name="twitter:card" content="summary_large_image" />
 
+    {/* Activa el CSS de revelado sólo si hay JS. Síncrono => sin flash. */}
+    <script is:inline>
+      document.documentElement.classList.add("reveal-ready");
+    </script>
+
+    <ClientRouter />
+
     <script
       type="application/ld+json"
       set:html={JSON.stringify({
@@ -67,5 +75,40 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // Revelado al hacer scroll — re-inicializable con View Transitions.
+      const initReveal = () => {
+        const els = Array.from(
+          document.querySelectorAll<HTMLElement>(".reveal:not(.is-visible)"),
+        );
+        if (!els.length) return;
+        const show = (el: Element) => el.classList.add("is-visible");
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          els.forEach(show);
+          return;
+        }
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                show(entry.target);
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.1 },
+        );
+        els.forEach((el) => io.observe(el));
+
+        // Failsafe: si algo falla, no dejes contenido invisible.
+        setTimeout(() => els.forEach(show), 2500);
+      };
+
+      initReveal();
+      document.addEventListener("astro:page-load", initReveal);
+    </script>
   </body>
 </html>

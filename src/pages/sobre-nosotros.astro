@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import CtaSection from "../components/CtaSection.astro";
+import Reveal from "../components/Reveal.astro";
 import { team, site } from "../data/site";
 
 const valores = [
@@ -16,16 +17,17 @@ const valores = [
   title="Sobre nosotros"
   description="Quiénes somos, desde cuándo y cómo trabajamos en Like A Rocket."
 >
-  <section class="bg-ink text-white">
-    <div class="container-page py-16 lg:py-24">
-      <span class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4" /> Sobre nosotros</span>
-      <h1 class="mt-5 max-w-3xl text-4xl leading-tight sm:text-5xl">
-        Una agencia pequeña, metida en cada proyecto como si fuera suyo.
-      </h1>
-      <p class="mt-5 max-w-2xl text-lg text-white/70">
+  <section class="relative overflow-hidden bg-ink text-white">
+    <div class="animate-blob pointer-events-none absolute -right-24 -top-24 h-96 w-96 bg-magenta-500/25 blur-3xl"></div>
+    <div class="container-page relative py-16 lg:py-24">
+      <Reveal as="span" class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4 animate-float" /> Sobre nosotros</Reveal>
+      <Reveal as="h1" delay={80} class="mt-5 max-w-3xl text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
+        Una agencia pequeña, metida en cada proyecto <span class="text-gradient">como si fuera suyo</span>.
+      </Reveal>
+      <Reveal as="p" delay={150} class="mt-5 max-w-2xl text-lg text-white/70">
         {site.legalName}. Marketing, diseño web y tecnología bajo el mismo techo, trabajando
         desde España con negocios locales y pymes.
-      </p>
+      </Reveal>
     </div>
   </section>
 
@@ -48,11 +50,11 @@ const valores = [
       <div>
         <h2 class="text-2xl sm:text-3xl">Lo que nos importa</h2>
         <ul class="mt-4 space-y-3">
-          {valores.map((v) => (
-            <li class="rounded-2xl border border-ink/10 bg-white p-5">
+          {valores.map((v, i) => (
+            <Reveal as="li" variant="right" delay={i * 80} class="card-hover rounded-2xl border-2 border-ink/10 bg-white p-5">
               <p class="font-display font-semibold">{v.t}</p>
               <p class="mt-1 text-sm leading-relaxed text-ink/70">{v.d}</p>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </div>
@@ -61,7 +63,7 @@ const valores = [
 
   <section class="bg-cloud py-16 sm:py-20">
     <div class="container-page">
-      <h2 class="text-2xl sm:text-3xl">El equipo</h2>
+      <Reveal as="h2" class="text-2xl sm:text-3xl">El equipo</Reveal>
       <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {team.map((m, i) => {
           const style = [
@@ -71,13 +73,13 @@ const valores = [
             "bg-purple-500 text-white",
           ][i % 4];
           return (
-            <div class="rounded-2xl border border-ink/10 bg-white p-6">
-              <div class={`grid h-16 w-14 place-items-center arch-sm ${style}`}>
+            <Reveal variant="scale" delay={i * 90} class="card-hover rounded-2xl border-2 border-ink/10 bg-white p-6">
+              <div class={`grid h-16 w-14 place-items-center arch-sm ${style} animate-float`} style={`animation-delay:${i * 0.4}s`}>
                 <Icon name="rocket" class="h-7 w-7" />
               </div>
               <p class="mt-4 font-display font-semibold">{m.name}</p>
               <p class="text-sm text-ink/60">{m.role}</p>
-            </div>
+            </Reveal>
           );
         })}
       </div>

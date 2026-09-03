@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import ContactForm from "../components/ContactForm.astro";
+import Reveal from "../components/Reveal.astro";
+import RocketArt from "../components/RocketArt.astro";
 import { processSteps } from "../data/site";
 
 // Widget de agenda (Calendly / Cal.com). Se activa con PUBLIC_BOOKING_URL.
@@ -12,16 +14,18 @@ const bookingUrl = import.meta.env.PUBLIC_BOOKING_URL ?? "";
   title="Reserva tu diagnóstico gratuito"
   description="Agenda 30 minutos con el equipo de Like A Rocket. Te decimos qué mejorar primero y qué resultado esperar. Sin compromiso."
 >
-  <section class="bg-ink text-white">
-    <div class="container-page py-16 lg:py-20">
-      <span class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4" /> Diagnóstico gratuito</span>
-      <h1 class="mt-5 max-w-3xl text-4xl leading-tight sm:text-5xl">
-        Reserva tu diagnóstico gratuito.
-      </h1>
-      <p class="mt-5 max-w-2xl text-lg text-white/70">
+  <section class="relative overflow-hidden bg-ink text-white">
+    <div class="animate-blob pointer-events-none absolute -left-24 -top-24 h-96 w-96 bg-magenta-500/25 blur-3xl"></div>
+    <RocketArt class="animate-float pointer-events-none absolute right-8 top-10 hidden h-32 w-32 opacity-80 lg:block" />
+    <div class="container-page relative py-16 lg:py-20">
+      <Reveal as="span" class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4 animate-float" /> Diagnóstico gratuito</Reveal>
+      <Reveal as="h1" delay={80} class="mt-5 max-w-3xl text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
+        Reserva tu <span class="groovy text-lime-500">diagnóstico gratuito</span>.
+      </Reveal>
+      <Reveal as="p" delay={150} class="mt-5 max-w-2xl text-lg text-white/70">
         30 minutos por videollamada. Revisamos tu presencia digital y te decimos qué mejorar
         primero y qué resultado esperar. Sin compromiso y sin venderte un paquete.
-      </p>
+      </Reveal>
     </div>
   </section>
 

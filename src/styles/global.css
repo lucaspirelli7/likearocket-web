@@ -165,3 +165,130 @@
   letter-spacing: 0.01em;
   line-height: 1.05;
 }
+
+/* ==================================================================
+   MOVIMIENTO — animaciones, revelados y transiciones
+   Todo se desactiva con prefers-reduced-motion (ver bloque final).
+================================================================== */
+
+@keyframes lar-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes lar-float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-14px) rotate(1deg); }
+}
+@keyframes lar-float-x {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(24px, -18px); }
+}
+@keyframes lar-blob {
+  0%, 100% { border-radius: 42% 58% 63% 37% / 42% 45% 55% 58%; transform: translate3d(0,0,0) scale(1); }
+  33%      { border-radius: 64% 36% 37% 63% / 58% 63% 37% 42%; transform: translate3d(3%, -4%, 0) scale(1.06); }
+  66%      { border-radius: 40% 60% 54% 46% / 49% 40% 60% 51%; transform: translate3d(-3%, 3%, 0) scale(0.96); }
+}
+@keyframes lar-spin-slow { to { transform: rotate(360deg); } }
+@keyframes lar-marquee   { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes lar-gradient   { to { background-position: 200% center; } }
+@keyframes lar-pop {
+  0%   { transform: scale(0.6); opacity: 0; }
+  70%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@keyframes lar-wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50%      { transform: rotate(3deg); }
+}
+@keyframes lar-trail {
+  0%, 100% { opacity: 0.35; transform: scaleY(0.7); }
+  50%      { opacity: 1; transform: scaleY(1.25); }
+}
+@keyframes lar-draw { to { stroke-dashoffset: 0; } }
+
+/* --- revelado al hacer scroll (activa .is-visible un IntersectionObserver) ---
+   Sólo se oculta cuando <html> tiene .reveal-ready (lo añade un script inline
+   síncrono en el <head>). Sin JS => todo visible. */
+.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--rv-delay, 0) * 1ms);
+  will-change: opacity, transform;
+}
+.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
+.reveal-ready .reveal-left  { transform: translateX(-32px); }
+.reveal-ready .reveal-right { transform: translateX(32px); }
+.reveal-ready .reveal-scale { transform: scale(0.94); }
+
+/* --- utilidades de animación --- */
+.animate-float      { animation: lar-float 6s ease-in-out infinite; }
+.animate-float-slow { animation: lar-float-x 14s ease-in-out infinite; }
+.animate-blob       { animation: lar-blob 18s ease-in-out infinite; }
+.animate-spin-slow  { animation: lar-spin-slow 22s linear infinite; }
+.animate-trail      { animation: lar-trail 0.5s ease-in-out infinite; transform-origin: top; }
+.animate-wiggle     { animation: lar-wiggle 3s ease-in-out infinite; }
+
+/* --- texto visual --- */
+.text-gradient {
+  background: linear-gradient(100deg,
+    var(--color-magenta-500), var(--color-purple-500),
+    var(--color-cyan-500), var(--color-magenta-500));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: lar-gradient 6s linear infinite;
+}
+.text-stroke {
+  color: transparent;
+  -webkit-text-stroke: 2px currentColor;
+  paint-order: stroke fill;
+}
+
+/* --- marquee / banda de texto en movimiento --- */
+.marquee {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee__track {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+  animation: lar-marquee 30s linear infinite;
+}
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee--reverse .marquee__track { animation-direction: reverse; }
+
+/* --- micro-interacciones --- */
+.link-arrow svg { transition: transform 0.2s ease; }
+.group:hover .link-arrow svg,
+.link-arrow:hover svg { transform: translateX(5px); }
+
+.card-hover { transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease; }
+.card-hover:hover { transform: translateY(-6px); box-shadow: 0 26px 50px -24px color-mix(in srgb, var(--color-ink) 45%, transparent); }
+
+.pop-in { animation: lar-pop 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* --- transiciones de página (View Transitions API) --- */
+@view-transition { navigation: auto; }
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 0.35s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-ready .reveal { opacity: 1 !important; transform: none !important; }
+  @view-transition { navigation: none; }
+}
