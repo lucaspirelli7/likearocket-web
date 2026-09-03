@@ -1,11 +1,11 @@
 ---
 import Icon from "./Icon.astro";
-interface Props { title: string; tone?: "magenta" | "cyan" | "gold" | "ink" }
+interface Props { title: string; tone?: "magenta" | "cyan" | "lime" | "ink" }
 const { title, tone = "magenta" } = Astro.props;
 const tones = {
   magenta: "border-magenta-500/30 bg-magenta-500/5",
   cyan: "border-cyan-500/30 bg-cyan-500/5",
-  gold: "border-gold-500/40 bg-gold-500/10",
+  lime: "border-lime-500/40 bg-lime-500/10",
   ink: "border-ink/15 bg-cloud",
 };
 ---

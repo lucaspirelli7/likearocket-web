@@ -10,7 +10,7 @@ Migración de Odoo a un sitio estático (Astro + Tailwind).
 | Framework | [Astro 5](https://astro.build) (output estático) | Velocidad y SEO, requisitos explícitos del brief |
 | Estilos | [Tailwind CSS 4](https://tailwindcss.com) (`@tailwindcss/vite`) | Tokens de marca en `src/styles/global.css` |
 | Contenido | Content Collections (Markdown) | El blog son `.md` en `src/content/blog/` |
-| Tipografía | Space Grotesk + Inter (`@fontsource-variable`, self-hosted) | Sin llamadas a Google Fonts |
+| Tipografía | Poppins + Bagel Fat One + Inter (`@fontsource`, self-hosted) | Sustitutos libres de TT Hazelnuts / Tan Nimbus — ver [`docs/MARCA.md`](docs/MARCA.md) |
 | Sitemap | `@astrojs/sitemap` | `/sitemap-index.xml` |
 | Deploy | Estático — Netlify / Vercel / Cloudflare Pages | `npm run build` → `dist/` |
 
@@ -44,11 +44,12 @@ src/
 public/             favicon, robots.txt, _redirects
 ```
 
-## Contenido y decisiones
+## Documentación
 
-Ver [`docs/ARQUITECTURA.md`](docs/ARQUITECTURA.md): mapa de páginas, contenido por
-página, redirecciones y **lista de pendientes antes de lanzar** (portafolio real,
-casos de `Resultados` con permiso, textos legales, endpoint del formulario, agenda).
+- [`docs/ARQUITECTURA.md`](docs/ARQUITECTURA.md) — mapa de páginas, contenido por página,
+  redirecciones y **lista de pendientes antes de lanzar**.
+- [`docs/MARCA.md`](docs/MARCA.md) — sistema de marca: color, tipografía, logos, motivos.
+- [`docs/branding.png`](docs/branding.png) — manual de marca original.
 
 ## Convenciones
 

@@ -9,11 +9,8 @@ const serviceItem = nav.find((n) => "children" in n && n.children);
 
 <header class="sticky top-0 z-50 border-b border-ink/10 bg-white/85 backdrop-blur">
   <div class="container-page flex h-16 items-center justify-between gap-4">
-    <a href="/" class="flex shrink-0 items-center gap-2 whitespace-nowrap font-display text-lg font-bold text-ink">
-      <span class="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-ink text-magenta-500">
-        <Icon name="rocket" class="h-5 w-5" />
-      </span>
-      Like A Rocket
+    <a href="/" class="flex shrink-0 items-center" aria-label="Like A Rocket — inicio">
+      <img src="/brand/logo.png" alt="Like A Rocket" width="1154" height="516" class="h-9 w-auto" />
     </a>
 
     <nav class="hidden items-center gap-7 lg:flex" aria-label="Principal">

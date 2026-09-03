@@ -80,6 +80,10 @@ Netlify/Cloudflare). Ninguna URL actual puede quedar en 404.
 - [ ] **Agenda de cita**: Cal.com o Calendly y poner `PUBLIC_BOOKING_URL`.
 - [ ] **Vídeos** de Paid Media y **capturas** de Social Media cuando existan.
 - [ ] **Imagen OG** (`public/og-default.png`, 1200×630).
+- [ ] **Fuentes de marca**: TT Hazelnuts y Tan Nimbus son de pago y no están en el repo.
+      Ahora se usan sustitutos libres (Poppins, Bagel Fat One, Inter). Si se compran las
+      licencias, ver [`docs/MARCA.md`](MARCA.md) para el cambio (solo toca `global.css`).
+- [ ] **Logo en SVG**: ahora son PNG (`public/brand/`). Pedir/rehacer versión vectorial.
 - [ ] Revisar datos de contacto: el brief y la web antigua usan `pedro@likearocket.es`
       y `+34 690 82 70 79`. Confirmar que siguen vigentes.
 - [ ] Decidir hosting y configurar dominio + los 301 a nivel de servidor.

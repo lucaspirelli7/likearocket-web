@@ -4,7 +4,7 @@ export type Service = {
   descriptor: string;
   promise: string;
   metric: string;
-  accent: "magenta" | "cyan" | "gold";
+  accent: "magenta" | "cyan" | "lime";
   icon: "browser" | "target" | "map" | "chat";
 };
 
@@ -36,7 +36,7 @@ export const services: Service[] = [
     promise:
       "Que te encuentren cuando buscan lo que haces, cerca de donde estás — en Google y también en ChatGPT y Perplexity.",
     metric: "Visualizaciones y llamadas desde la ficha, posición en el mapa.",
-    accent: "gold",
+    accent: "lime",
     icon: "map",
   },
   {
