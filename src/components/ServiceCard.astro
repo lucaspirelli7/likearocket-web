@@ -9,18 +9,12 @@ const accent = {
   cyan: "text-cyan-600 bg-cyan-500/10 group-hover:bg-cyan-500 group-hover:text-white",
   lime: "text-lime-600 bg-lime-500/20 group-hover:bg-lime-500 group-hover:text-ink",
 }[service.accent];
-const bar = {
-  magenta: "bg-magenta-500",
-  cyan: "bg-cyan-500",
-  lime: "bg-lime-500",
-}[service.accent];
 ---
 
 <a
   href={`/${service.slug}`}
-  class="group card-hover relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-ink/10 bg-white p-6 hover:border-ink/20"
+  class="group card-hover relative flex h-full flex-col rounded-2xl border-2 border-ink/10 bg-white p-6 hover:border-ink/20"
 >
-  <span class={`absolute inset-x-0 top-0 h-1.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${bar}`}></span>
   <span class={`grid h-12 w-12 place-items-center rounded-xl transition-colors duration-300 ${accent}`}>
     <Icon name={service.icon} class="h-6 w-6" />
   </span>

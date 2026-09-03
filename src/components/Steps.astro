@@ -3,17 +3,15 @@ interface Step { title: string; body: string }
 interface Props { steps: Step[]; title?: string }
 const { steps, title } = Astro.props;
 const accents = ["text-magenta-500", "text-cyan-500", "text-lime-600", "text-purple-500"];
-const bars = ["bg-magenta-500", "bg-cyan-500", "bg-lime-500", "bg-purple-500"];
 ---
 <div>
   {title && <h2 class="text-2xl sm:text-3xl">{title}</h2>}
   <ol class="lar-steps mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
     {steps.map((s, i) => (
       <li
-        class="lar-step relative overflow-hidden rounded-2xl border-2 border-ink/10 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-xl hover:shadow-ink/5"
+        class="lar-step rounded-2xl border-2 border-ink/10 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-xl hover:shadow-ink/5"
         style={`--step-delay:${i * 110}ms`}
       >
-        <span class={`absolute inset-x-0 top-0 h-1.5 ${bars[i % 4]}`}></span>
         <span class={`groovy block text-4xl ${accents[i % 4]}`}>
           {String(i + 1).padStart(2, "0")}
         </span>
