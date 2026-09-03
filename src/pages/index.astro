@@ -6,7 +6,6 @@ import Steps from "../components/Steps.astro";
 import CtaSection from "../components/CtaSection.astro";
 import Reveal from "../components/Reveal.astro";
 import Marquee from "../components/Marquee.astro";
-import RocketArt from "../components/RocketArt.astro";
 import { services } from "../data/services";
 import { primaryCta, secondaryCta, processSteps, team } from "../data/site";
 import { getFeaturedResult } from "../data/results";
@@ -43,7 +42,6 @@ const featured = getFeaturedResult();
       </div>
 
       <div class="relative self-center">
-        <RocketArt class="animate-float absolute -right-4 -top-24 hidden h-40 w-40 drop-shadow-[0_20px_40px_rgba(15,194,192,0.35)] lg:block" />
         <ul class="grid content-start gap-3">
           {services.map((s, i) => (
             <Reveal as="li" variant="right" delay={i * 90}>

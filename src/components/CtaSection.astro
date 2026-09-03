@@ -2,7 +2,6 @@
 import { primaryCta, secondaryCta } from "../data/site";
 import Icon from "./Icon.astro";
 import Reveal from "./Reveal.astro";
-import RocketArt from "./RocketArt.astro";
 interface Props {
   title?: string;
   body?: string;
@@ -16,7 +15,6 @@ const {
 <section class="relative overflow-hidden bg-ink text-white">
   <div class="animate-blob pointer-events-none absolute -right-24 -top-24 h-80 w-80 bg-magenta-500/30 blur-3xl"></div>
   <div class="animate-blob pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 bg-cyan-500/25 blur-3xl" style="animation-delay:-8s"></div>
-  <RocketArt class="animate-float pointer-events-none absolute right-6 top-1/2 hidden h-28 w-28 -translate-y-1/2 opacity-80 lg:block" />
   <div class="container-page relative py-20 text-center sm:py-24">
     <Reveal>
       <span class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4 animate-float" /> Diagnóstico gratuito</span>
