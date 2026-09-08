@@ -35,29 +35,29 @@ const principios = [
 
 export default function SobreNosotrosPage() {
   return (
-    <div className="about-page">
+    <div className="dark-page">
       {/* HERO */}
-      <section className="about-hero" aria-labelledby="about-title">
+      <section className="page-hero" aria-labelledby="about-title">
         <div className="container">
-          <div className="about-hero__meta">
+          <div className="page-hero__meta">
             <Link href="/#servicios">← Volver al inicio</Link>
             <span>SOBRE NOSOTROS</span>
-            <span className="about-hero__edition">LIKE A ROCKET — EL EQUIPO</span>
+            <span className="page-hero__edition">LIKE A ROCKET — EL EQUIPO</span>
           </div>
 
-          <div className="about-hero__stage">
-            <h1 id="about-title" className="about-hero__title">
+          <div className="page-hero__stage">
+            <h1 id="about-title" className="page-hero__title">
               <span>CONTIGO,</span>
               <span>TODO EL</span>
-              <span className="about-hero__punch">EQUIPO.</span>
+              <span className="page-hero__punch">EQUIPO.</span>
             </h1>
 
-            <Reveal className="about-hero__card">
+            <Reveal className="page-hero__card">
               <div className="result-data__label">
                 <span>LA AGENCIA, EN CORTO</span>
                 <span aria-hidden="true">✳</span>
               </div>
-              <ul className="about-ficha">
+              <ul className="page-ficha">
                 <li>
                   <span>Equipo</span>
                   <b>Varias manos, un contacto</b>
@@ -78,8 +78,8 @@ export default function SobreNosotrosPage() {
             </Reveal>
           </div>
 
-          <div className="about-hero__bottom">
-            <div className="about-hero__tags">
+          <div className="page-hero__bottom">
+            <div className="page-hero__tags">
               <span>Cercanía</span>
               <span>Claridad</span>
               <span>Sin sorpresas</span>
@@ -89,7 +89,7 @@ export default function SobreNosotrosPage() {
               misma persona y detrás tienes a todo el equipo: diseño, campañas, contenido y datos.
               Cada web, cada campaña y cada informe pasan por ti antes de salir.
             </p>
-            <Link href="/contacto" className="about-hero__link" aria-label="Hablemos de tu proyecto">
+            <Link href="/contacto" className="page-hero__link" aria-label="Hablemos de tu proyecto">
               <span>
                 Hablemos de
                 <br />

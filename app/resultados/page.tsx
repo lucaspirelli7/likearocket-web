@@ -30,29 +30,29 @@ const casos = [
 
 export default function ResultadosPage() {
   return (
-    <div className="results-page">
+    <div className="dark-page">
       {/* HERO */}
-      <section className="results-hero" aria-labelledby="results-title">
+      <section className="page-hero" aria-labelledby="results-title">
         <div className="container">
-          <div className="results-hero__meta">
+          <div className="page-hero__meta">
             <Link href="/#servicios">← Volver al inicio</Link>
             <span>RESULTADOS</span>
-            <span className="results-hero__edition">LIKE A ROCKET — CÓMO LO MEDIMOS</span>
+            <span className="page-hero__edition">LIKE A ROCKET — CÓMO LO MEDIMOS</span>
           </div>
 
-          <div className="results-hero__stage">
-            <h1 id="results-title" className="results-hero__title">
+          <div className="page-hero__stage">
+            <h1 id="results-title" className="page-hero__title">
               <span>LO QUE</span>
               <span>PASA</span>
-              <span className="results-hero__punch">DESPUÉS.</span>
+              <span className="page-hero__punch">DESPUÉS.</span>
             </h1>
 
-            <Reveal className="results-hero__card">
+            <Reveal className="page-hero__card">
               <div className="result-data__label">
                 <span>FICHA DE CASO</span>
                 <span aria-hidden="true">✳</span>
               </div>
-              <ul className="results-ficha">
+              <ul className="page-ficha">
                 <li>
                   <span>Sector</span>
                   <b>Clínica dental</b>
@@ -73,8 +73,8 @@ export default function ResultadosPage() {
             </Reveal>
           </div>
 
-          <div className="results-hero__bottom">
-            <div className="results-hero__tags">
+          <div className="page-hero__bottom">
+            <div className="page-hero__tags">
               <span>Sector</span>
               <span>Punto de partida</span>
               <span>Qué hicimos</span>
@@ -85,7 +85,7 @@ export default function ResultadosPage() {
               cuando no hay permiso para dar el nombre, los publicamos por sector. Los números de esta
               página son escenarios ilustrativos, no resultados verificados de clientes.
             </p>
-            <Link href="/contacto" className="results-hero__link" aria-label="Hablemos de tu proyecto">
+            <Link href="/contacto" className="page-hero__link" aria-label="Hablemos de tu proyecto">
               <span>
                 Hablemos de
                 <br />

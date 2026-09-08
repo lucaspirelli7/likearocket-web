@@ -1,70 +1,128 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { Callout, Eyebrow } from "@/components/ui/primitives";
 import { ContactForm } from "@/components/ContactForm";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contacto y cita",
+  title: "Contacto · Cuéntanos tu caso",
   description:
-    "Reserva tu diagnóstico gratuito. Cuéntanos tu situación y te decimos por dónde empezar. Sin compromiso, respuesta en menos de 24 h.",
+    "Reserva tu diagnóstico gratuito. Cuéntanos qué haces y qué quieres conseguir. Reunión corta, sin compromiso y respuesta en menos de 24 h.",
 };
+
+const whatsapp = `https://wa.me/${site.phoneHref.replace(/[^0-9]/g, "")}`;
 
 export default function ContactoPage() {
   return (
-    <>
-      <section className="hero">
-        <div className="container hero__inner">
-          <Reveal><Eyebrow>Contacto y cita</Eyebrow></Reveal>
-          <Reveal as="h1" className="t-hero">
-            Reserva tu <span className="text-grad">diagnóstico gratuito</span>.
-          </Reveal>
-          <Reveal as="p" className="lead">
-            Cuéntanos tu situación y te decimos por dónde empezar. La reunión es corta, gratuita y sin
-            compromiso.
-          </Reveal>
+    <div className="dark-page">
+      {/* HERO */}
+      <section className="page-hero" aria-labelledby="contact-title">
+        <div className="container">
+          <div className="page-hero__meta">
+            <Link href="/#servicios">← Volver al inicio</Link>
+            <span>CONTACTO</span>
+            <span className="page-hero__edition">LIKE A ROCKET — HABLEMOS</span>
+          </div>
+
+          <div className="page-hero__stage">
+            <h1 id="contact-title" className="page-hero__title">
+              <span>CUÉNTANOS</span>
+              <span>TU</span>
+              <span className="page-hero__punch">CASO.</span>
+            </h1>
+
+            <Reveal className="page-hero__card">
+              <div className="result-data__label">
+                <span>CONTACTO DIRECTO</span>
+                <span aria-hidden="true">✳</span>
+              </div>
+              <ul className="page-ficha">
+                <li>
+                  <span>Teléfono</span>
+                  <b>
+                    <a href={site.phoneHref}>{site.phone}</a>
+                  </b>
+                </li>
+                <li>
+                  <span>Email</span>
+                  <b>
+                    <a href={`mailto:${site.email}`}>{site.email}</a>
+                  </b>
+                </li>
+                <li>
+                  <span>WhatsApp</span>
+                  <b>
+                    <a href={whatsapp} target="_blank" rel="noopener">
+                      Escríbenos ↗
+                    </a>
+                  </b>
+                </li>
+                <li>
+                  <span>Horario</span>
+                  <b>{site.hours}</b>
+                </li>
+              </ul>
+            </Reveal>
+          </div>
+
+          <div className="page-hero__bottom">
+            <div className="page-hero__tags">
+              <span>Gratis</span>
+              <span>Sin compromiso</span>
+              <span>Respuesta en 24 h</span>
+            </div>
+            <p>
+              Cuéntanos qué haces y qué quieres conseguir. Con eso preparamos una reunión corta y sin
+              rodeos. Y si prefieres hablar ya, el teléfono está aquí al lado.
+            </p>
+            <Link href="#formulario" className="page-hero__link" aria-label="Ir al formulario">
+              <span>
+                Ir al
+                <br />
+                formulario
+              </span>
+              <b aria-hidden="true">↓</b>
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container split split--wide-left">
-          <Reveal>
+      {/* TICKER */}
+      <div className="ticker" aria-label="Diagnóstico gratis, sin compromiso, respuesta en 24 h">
+        <div className="ticker__track" aria-hidden="true">
+          {[0, 1, 2, 3].map((i) => (
+            <span className="ticker__group" key={i}>
+              DIAGNÓSTICO GRATIS <b>✳</b> SIN COMPROMISO <b>✳</b> RESPUESTA EN 24 H <b>✳</b>{" "}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* FORMULARIO */}
+      <section className="contact-section" id="formulario">
+        <div className="container contact-layout">
+          <Reveal className="contact-brief">
+            <span className="mono-label">01 / RESERVA TU DIAGNÓSTICO</span>
+            <h2>
+              Cinco campos.
+              <br />
+              <span className="serif-accent">Nada más.</span>
+            </h2>
+            <p>
+              Cuéntanos qué haces y qué quieres conseguir. Con eso preparamos una reunión corta,
+              gratuita y sin compromiso. Te respondemos en menos de 24 h en días laborables.
+            </p>
+            <a href={site.phoneHref} className="editorial-link">
+              O llámanos directamente <span aria-hidden="true">↗</span>
+            </a>
+          </Reveal>
+
+          <Reveal className="contact-panel">
+            <span className="mono-label">EL FORMULARIO</span>
             <ContactForm />
           </Reveal>
-
-          <Reveal as="aside" className="contact-info">
-            <div className="contact-info__item">
-              <span>Teléfono</span>
-              <a href={site.phoneHref}>{site.phone}</a>
-            </div>
-            <div className="contact-info__item">
-              <span>Email</span>
-              <a href={`mailto:${site.email}`}>{site.email}</a>
-            </div>
-            <div className="contact-info__item">
-              <span>Horario</span>
-              <p>
-                Lunes a viernes
-                <br />
-                9:00 – 18:00
-              </p>
-            </div>
-            <div className="contact-info__item">
-              <span>Cómo trabajamos</span>
-              <p className="muted" style={{ fontSize: "0.95rem" }}>
-                En remoto, con clientes de toda España. Nos coordinamos por videollamada y correo.
-              </p>
-            </div>
-            <Callout title="¿Prefieres hablar directamente?" tone="magenta">
-              Llámanos o escríbenos por WhatsApp al{" "}
-              <a href={site.phoneHref} style={{ color: "var(--cyan)" }}>
-                {site.phone}
-              </a>
-              .
-            </Callout>
-          </Reveal>
         </div>
       </section>
-    </>
+    </div>
   );
 }
