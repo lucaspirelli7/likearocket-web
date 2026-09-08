@@ -10,6 +10,8 @@ export interface BlogPost {
   slug: string;
   title: string;
   excerpt: string;
+  /** Etiqueta de tema, p. ej. "SEO & GEO". */
+  tag: string;
   date: string | null; // ISO; null = "Próximamente"
   published: boolean;
   /** Cuerpo en bloques simples para no depender de un parser de Markdown todavía. */
@@ -26,6 +28,7 @@ export const posts: BlogPost[] = [
     title: "Qué es GEO y por qué tu negocio ya debería aparecer en ChatGPT",
     excerpt:
       "Cómo funcionan las respuestas de la IA y qué se puede hacer para que citen tu negocio.",
+    tag: "SEO & GEO",
     date: null,
     published: false,
     body: [
@@ -54,6 +57,7 @@ export const posts: BlogPost[] = [
     title: "La única métrica que mira tu web: cuántos visitantes contactan",
     excerpt:
       "Por qué las visitas no dicen nada y cómo medir lo que de verdad importa.",
+    tag: "Medición",
     date: null,
     published: false,
   },
@@ -62,6 +66,7 @@ export const posts: BlogPost[] = [
     title: "Cuánto tarda la publicidad en Google en dar resultados",
     excerpt:
       "Qué esperar en las primeras semanas y cómo saber si va por buen camino.",
+    tag: "Paid Media",
     date: null,
     published: false,
   },
@@ -70,6 +75,7 @@ export const posts: BlogPost[] = [
     title: "Tener ficha de Google no es lo mismo que aparecer",
     excerpt:
       "Los ajustes que separan una ficha invisible de una que trae llamadas.",
+    tag: "SEO Local",
     date: null,
     published: false,
   },
