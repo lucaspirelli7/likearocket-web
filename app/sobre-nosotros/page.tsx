@@ -3,21 +3,26 @@ import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Sobre nosotros · Pocos, cerca, claros",
+  title: "Sobre nosotros · Contigo, todo el equipo",
   description:
-    "Like A Rocket es una agencia de marketing digital pequeña, con nombre y apellidos. Trabajas con las personas que hacen el trabajo. Trato directo, informes claros y presupuesto caso a caso.",
+    "Like A Rocket es una agencia de marketing digital con nombre y apellidos. Hablas siempre con la misma persona y detrás tienes a todo el equipo: diseño, campañas, contenido y datos.",
 };
 
 const equipo = [
   {
     role: "Fundador · Estrategia",
     name: "Pedro de Gabriel",
-    text: "Define el plan de cada cliente y lleva la relación directa. Es quien coge el teléfono.",
+    text: "Define el plan de cada cliente y lleva la relación. Es quien coge el teléfono.",
   },
   {
     role: "Marketing y Desarrollo Web",
     name: "Lucas A. Pirelli",
     text: "Diseña y desarrolla las webs, monta las campañas y deja la medición funcionando.",
+  },
+  {
+    role: "Producción",
+    name: "El resto del equipo",
+    text: "Diseño, redacción, contenido para redes y edición de vídeo. Las manos que hacen que todo salga a tiempo.",
   },
 ];
 
@@ -42,9 +47,9 @@ export default function SobreNosotrosPage() {
 
           <div className="about-hero__stage">
             <h1 id="about-title" className="about-hero__title">
-              <span>POCOS.</span>
-              <span>CERCA.</span>
-              <span className="about-hero__punch">CLAROS.</span>
+              <span>CONTIGO,</span>
+              <span>TODO EL</span>
+              <span className="about-hero__punch">EQUIPO.</span>
             </h1>
 
             <Reveal className="about-hero__card">
@@ -55,7 +60,7 @@ export default function SobreNosotrosPage() {
               <ul className="about-ficha">
                 <li>
                   <span>Equipo</span>
-                  <b>2 personas</b>
+                  <b>Varias manos, un contacto</b>
                 </li>
                 <li>
                   <span>Dónde</span>
@@ -80,9 +85,9 @@ export default function SobreNosotrosPage() {
               <span>Sin sorpresas</span>
             </div>
             <p>
-              Somos una agencia de marketing digital pequeña y con nombre y apellidos. Trabajas con las
-              personas que hacen el trabajo, no con un gestor de cuentas. Cada web, cada campaña y cada
-              informe pasan por ti antes de salir.
+              Somos una agencia de marketing digital con nombre y apellidos. Hablas siempre con la
+              misma persona y detrás tienes a todo el equipo: diseño, campañas, contenido y datos.
+              Cada web, cada campaña y cada informe pasan por ti antes de salir.
             </p>
             <Link href="/contacto" className="about-hero__link" aria-label="Hablemos de tu proyecto">
               <span>
@@ -114,13 +119,13 @@ export default function SobreNosotrosPage() {
             <span className="mono-label">01 / QUIÉN ESTÁ DETRÁS</span>
             <div>
               <h2>
-                Dos personas.
+                Un equipo detrás.
                 <br />
-                <span className="serif-accent">Un solo interlocutor.</span>
+                <span className="serif-accent">Un interlocutor delante.</span>
               </h2>
               <p>
-                El plan lo define quien te atiende. La web la monta quien te la enseña. Sin capas
-                entre tu negocio y el trabajo.
+                Trabajan varias manos en tu proyecto, pero siempre hablas con la misma persona. Sin
+                capas entre tu negocio y el trabajo.
               </p>
             </div>
             <span className="heading-asterisk" aria-hidden="true">✳</span>
