@@ -1,105 +1,195 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { Callout, Eyebrow, FeatureList } from "@/components/ui/primitives";
-import { CtaBand } from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Sobre nosotros",
+  title: "Sobre nosotros · Pocos, cerca, claros",
   description:
-    "Like A Rocket es una agencia de marketing digital enfocada en resultados. Equipo pequeño, trato cercano, informes claros y presupuesto caso a caso.",
+    "Like A Rocket es una agencia de marketing digital pequeña, con nombre y apellidos. Trabajas con las personas que hacen el trabajo. Trato directo, informes claros y presupuesto caso a caso.",
 };
 
 const equipo = [
   {
-    name: "Pedro de Gabriel",
     role: "Fundador · Estrategia",
-    text: "Define el plan de cada cliente y lleva la relación directa.",
+    name: "Pedro de Gabriel",
+    text: "Define el plan de cada cliente y lleva la relación directa. Es quien coge el teléfono.",
   },
   {
-    name: "Lucas A. Pirelli",
     role: "Marketing y Desarrollo Web",
-    text: "Diseño, desarrollo de las webs y montaje de la medición.",
+    name: "Lucas A. Pirelli",
+    text: "Diseña y desarrolla las webs, monta las campañas y deja la medición funcionando.",
   },
+];
+
+const principios = [
+  ["Una prioridad", "Sabemos qué número estamos moviendo y por qué. Sin dispersión."],
+  ["Tú apruebas", "Nada sale publicado sin tu visto bueno. Ni un post, ni un anuncio."],
+  ["Informe cada mes", "Métricas reales y el plan del mes siguiente. Siempre las mismas."],
+  ["Caso a caso", "Presupuesto a medida de tu negocio. Sin paquetes cerrados ni letra pequeña."],
 ];
 
 export default function SobreNosotrosPage() {
   return (
-    <>
-      <section className="hero">
-        <div className="container hero__inner">
-          <Reveal><Eyebrow>Sobre nosotros</Eyebrow></Reveal>
-          <Reveal as="h1" className="t-hero">
-            Somos un equipo pequeño con <span className="text-grad">una obsesión</span>: que te lleguen
-            clientes.
-          </Reveal>
-          <Reveal as="p" className="lead">
-            Like A Rocket es una agencia de marketing digital. Hacemos webs que venden y campañas que
-            traen clientes, y lo medimos con números que se entienden.
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container split split--half">
-          <Reveal className="stack">
-            <Eyebrow>Cómo trabajamos</Eyebrow>
-            <h2 className="t-h1">Cerca, claros y sin sorpresas.</h2>
-          </Reveal>
-          <Reveal>
-            <FeatureList
-              items={[
-                <><strong>Una sola prioridad por proyecto.</strong> Sabemos qué número estamos moviendo y por qué.</>,
-                <><strong>Tú apruebas antes.</strong> Nada sale publicado sin tu visto bueno.</>,
-                <><strong>Informe cada mes.</strong> Métricas reales y el plan del mes siguiente.</>,
-                <><strong>Presupuesto caso a caso.</strong> Sin paquetes cerrados ni letra pequeña.</>,
-              ]}
-            />
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section section--tight">
+    <div className="about-page">
+      {/* HERO */}
+      <section className="about-hero" aria-labelledby="about-title">
         <div className="container">
-          <Reveal className="stack">
-            <Eyebrow>El equipo</Eyebrow>
-            <h2 className="t-h1">Quién está detrás.</h2>
+          <div className="about-hero__meta">
+            <Link href="/#servicios">← Volver al inicio</Link>
+            <span>SOBRE NOSOTROS</span>
+            <span className="about-hero__edition">LIKE A ROCKET — EL EQUIPO</span>
+          </div>
+
+          <div className="about-hero__stage">
+            <h1 id="about-title" className="about-hero__title">
+              <span>POCOS.</span>
+              <span>CERCA.</span>
+              <span className="about-hero__punch">CLAROS.</span>
+            </h1>
+
+            <Reveal className="about-hero__card">
+              <div className="result-data__label">
+                <span>LA AGENCIA, EN CORTO</span>
+                <span aria-hidden="true">✳</span>
+              </div>
+              <ul className="about-ficha">
+                <li>
+                  <span>Equipo</span>
+                  <b>2 personas</b>
+                </li>
+                <li>
+                  <span>Dónde</span>
+                  <b>Remoto · toda España</b>
+                </li>
+                <li>
+                  <span>Apruebas</span>
+                  <b>Tú, antes de publicar</b>
+                </li>
+                <li>
+                  <span>Informe</span>
+                  <b>Cada mes ↗</b>
+                </li>
+              </ul>
+            </Reveal>
+          </div>
+
+          <div className="about-hero__bottom">
+            <div className="about-hero__tags">
+              <span>Cercanía</span>
+              <span>Claridad</span>
+              <span>Sin sorpresas</span>
+            </div>
+            <p>
+              Somos una agencia de marketing digital pequeña y con nombre y apellidos. Trabajas con las
+              personas que hacen el trabajo, no con un gestor de cuentas. Cada web, cada campaña y cada
+              informe pasan por ti antes de salir.
+            </p>
+            <Link href="/contacto" className="about-hero__link" aria-label="Hablemos de tu proyecto">
+              <span>
+                Hablemos de
+                <br />
+                tu proyecto
+              </span>
+              <b aria-hidden="true">↗</b>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* TICKER */}
+      <div className="ticker" aria-label="Cerca, claros, sin sorpresas">
+        <div className="ticker__track" aria-hidden="true">
+          {[0, 1, 2, 3].map((i) => (
+            <span className="ticker__group" key={i}>
+              CERCA <b>✳</b> CLAROS <b>✳</b> SIN SORPRESAS <b>✳</b>{" "}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* EL EQUIPO */}
+      <section className="about-team">
+        <div className="container">
+          <Reveal className="section-heading">
+            <span className="mono-label">01 / QUIÉN ESTÁ DETRÁS</span>
+            <div>
+              <h2>
+                Dos personas.
+                <br />
+                <span className="serif-accent">Un solo interlocutor.</span>
+              </h2>
+              <p>
+                El plan lo define quien te atiende. La web la monta quien te la enseña. Sin capas
+                entre tu negocio y el trabajo.
+              </p>
+            </div>
+            <span className="heading-asterisk" aria-hidden="true">✳</span>
           </Reveal>
-          <div className="grid grid--2" style={{ marginTop: "2rem" }}>
-            {equipo.map((p) => (
-              <Reveal key={p.name} className="card">
-                <h3 className="t-h3">{p.name}</h3>
-                <p>
-                  <strong style={{ color: "var(--text)" }}>{p.role}</strong>
-                  <br />
-                  {p.text}
-                </p>
+
+          <div className="about-team__grid">
+            {equipo.map((p, i) => (
+              <Reveal className="about-member" key={p.name} delay={i * 80}>
+                <span className="about-member__role">{p.role}</span>
+                <h3>{p.name}</h3>
+                <p>{p.text}</p>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section section--tight">
-        <div className="container split split--half">
-          <Reveal>
-            <Callout title="Desde cuándo">
-              Llevamos años ayudando a pymes españolas a tener una presencia digital que trabaje, no
-              que decore.
-            </Callout>
+      {/* CÓMO TRABAJAMOS */}
+      <section className="process-editorial">
+        <div className="container">
+          <Reveal className="process-heading">
+            <span className="mono-label">02 / CÓMO TRABAJAMOS</span>
+            <h2>
+              Cerca, claros
+              <br />
+              <span className="serif-accent">y sin sorpresas.</span>
+            </h2>
+            <p>De la primera conversación al informe de cada mes.</p>
           </Reveal>
-          <Reveal>
-            <Callout title="Dónde estamos">
-              Trabajamos en remoto con clientes de toda España. Nos coordinamos por videollamada y
-              correo.
-            </Callout>
-          </Reveal>
+          <div className="process-grid">
+            {principios.map(([title, text], i) => (
+              <Reveal className="process-step" key={title} delay={i * 80}>
+                <span className="process-step__number">
+                  0{i + 1}
+                  <span aria-hidden="true">↗</span>
+                </span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      <CtaBand
-        title="¿Hablamos de tu negocio?"
-        text="Una reunión corta, gratuita y sin compromiso para ver si encajamos."
-      />
-    </>
+      {/* CIERRE */}
+      <section className="home-contact">
+        <div className="container">
+          <Reveal>
+            <span className="mono-label">¿NOS CONOCEMOS?</span>
+            <Link href="/contacto" className="contact-display">
+              <span>
+                HABLEMOS<span className="serif-accent">.</span>
+              </span>
+              <span className="contact-display__arrow" aria-hidden="true">↗</span>
+            </Link>
+            <div className="home-contact__bottom">
+              <p>
+                Cuéntanos tu caso.
+                <br />
+                Te decimos con quién trabajarías y por dónde empezar.
+              </p>
+              <span>Diagnóstico gratuito. Sin compromiso.</span>
+              <Link href="/contacto" className="btn btn--primary">
+                Hablemos de tu proyecto <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </div>
   );
 }
