@@ -1,0 +1,70 @@
+name: Build & push image
+
+# Construye la imagen Docker FUERA del VPS (runner de GitHub, 16 GB / 4 vCPU)
+# y la publica en GHCR. Coolify solo descarga la imagen ya hecha (~150 MB en runtime),
+# sin gastar RAM/CPU del servidor en compilar.
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "README.md"
+      - "docs/**"
+  workflow_dispatch: {}
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  IMAGE: ghcr.io/${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Login GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tags y labels
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,prefix=main-
+
+      - name: Build & push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # Opcional: avisa a Coolify para que descargue la nueva imagen y redespliegue.
+      # Configura el secret COOLIFY_DEPLOY_WEBHOOK con la URL completa del webhook de
+      # deploy de esa aplicación en Coolify. Si no está, se omite este paso.
+      - name: Redeploy en Coolify
+        env:
+          HOOK: ${{ secrets.COOLIFY_DEPLOY_WEBHOOK }}
+        run: |
+          if [ -n "$HOOK" ]; then
+            curl -fsSL --retry 3 -X POST "$HOOK"
+          else
+            echo "COOLIFY_DEPLOY_WEBHOOK no configurado — se omite el redeploy automático."
+          fi

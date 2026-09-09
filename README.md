@@ -23,29 +23,49 @@ npm run build && npm start
 
 Node ≥ 20.9 (fijado a 22 en `.nvmrc`).
 
-## Despliegue (Coolify)
+## Despliegue
 
-La raíz de este repo **es** la app, así que no hace falta configurar subcarpeta.
+El VPS de Coolify (KVM 2 · 8 GB, compartido con Plausible/ClickHouse/etc.) **no tiene RAM
+para compilar** `next build`. Solución: la imagen se construye en **GitHub Actions** y
+Coolify solo la **descarga y ejecuta** (~150 MB en runtime).
 
-1. **Repo privado**: en Coolify → *Sources* → *Add GitHub App* e instalarla sobre
-   `likearocket-web` (da webhooks de auto-deploy). Alternativa: *Deploy Key*.
-2. **+ New → Application** → fuente = ese repo → rama `main`.
-3. **Build Pack**: `Dockerfile` (ya incluido). Puerto expuesto: **3000**.
-4. **Domain**: `www.likearocket.es` + SSL automático (Let's Encrypt).
-5. Deploy. Dejar activado *Deploy on push*.
+### 1. GitHub Actions → GHCR (automático)
 
-Build local del contenedor, para probar:
+`.github/workflows/build.yml` se dispara en cada push a `main`: construye con el `Dockerfile`
+y publica `ghcr.io/lucaspirelli7/likearocket-web:latest` (+ `:main-<sha>`). No necesita
+secrets (usa el `GITHUB_TOKEN`).
+
+Tras el primer build, hacer el paquete **público**:
+GitHub → perfil → *Packages* → `likearocket-web` → *Package settings* → *Change visibility* → Public.
+(La imagen solo lleva JS/CSS/HTML compilado, sin secretos — `.env*` está en `.dockerignore`.)
+
+### 2. Coolify → tipo "Docker Image"
+
+- Recurso **Docker Image** (no "Dockerfile Build Pack"): `ghcr.io/lucaspirelli7/likearocket-web:latest`
+- Puerto expuesto: **3000**
+- Domain: `www.likearocket.es` + SSL automático
+- Si el paquete queda privado: añadir credencial de registro en Coolify
+  (`ghcr.io`, usuario = tu GitHub, contraseña = PAT con `read:packages`).
+
+### 3. Redeploy automático (opcional)
+
+En Coolify, copiar la **URL del webhook de deploy** del recurso y guardarla como secret
+`COOLIFY_DEPLOY_WEBHOOK` en el repo (*Settings → Secrets → Actions*). El workflow la llama
+al final de cada build → Coolify baja la imagen nueva y redespliega.
+
+### Probar la imagen en local (si hay Docker)
 
 ```bash
 docker build -t likearocket-web .
 docker run --rm -p 3000:3000 likearocket-web
 ```
 
-`Dockerfile` = multi-stage con `output: "standalone"` (`next.config.ts`) → imagen final
-pequeña que arranca con `node server.js`. Respeta `PORT` y `HOSTNAME`.
+`Dockerfile` = multi-stage con `output: "standalone"` (`next.config.ts`) → arranca con
+`node server.js`, respeta `PORT` y `HOSTNAME`.
 
 **Variables de entorno**: ninguna obligatoria hoy. Al conectar email/CRM: `RESEND_API_KEY`
-etc. Las `NEXT_PUBLIC_*` deben existir en **build**, no solo en runtime.
+etc. Las `NEXT_PUBLIC_*` deben existir en **build** (o sea, como variables del workflow),
+no solo en runtime.
 
 ## Estructura
 
