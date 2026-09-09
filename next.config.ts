@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Salida mínima para el contenedor Docker (Coolify): .next/standalone con su server.js.
+  output: "standalone",
   async redirects() {
     return [
       // Redirecciones del brief — ninguna URL antigua puede quedar en 404.

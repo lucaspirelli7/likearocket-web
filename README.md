@@ -21,6 +21,32 @@ npm run dev        # http://localhost:3000
 npm run build && npm start
 ```
 
+Node ≥ 20.9 (fijado a 22 en `.nvmrc`).
+
+## Despliegue (Coolify)
+
+La raíz de este repo **es** la app, así que no hace falta configurar subcarpeta.
+
+1. **Repo privado**: en Coolify → *Sources* → *Add GitHub App* e instalarla sobre
+   `likearocket-web` (da webhooks de auto-deploy). Alternativa: *Deploy Key*.
+2. **+ New → Application** → fuente = ese repo → rama `main`.
+3. **Build Pack**: `Dockerfile` (ya incluido). Puerto expuesto: **3000**.
+4. **Domain**: `www.likearocket.es` + SSL automático (Let's Encrypt).
+5. Deploy. Dejar activado *Deploy on push*.
+
+Build local del contenedor, para probar:
+
+```bash
+docker build -t likearocket-web .
+docker run --rm -p 3000:3000 likearocket-web
+```
+
+`Dockerfile` = multi-stage con `output: "standalone"` (`next.config.ts`) → imagen final
+pequeña que arranca con `node server.js`. Respeta `PORT` y `HOSTNAME`.
+
+**Variables de entorno**: ninguna obligatoria hoy. Al conectar email/CRM: `RESEND_API_KEY`
+etc. Las `NEXT_PUBLIC_*` deben existir en **build**, no solo en runtime.
+
 ## Estructura
 
 ```
