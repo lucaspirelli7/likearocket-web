@@ -1,0 +1,70 @@
+---
+import Icon from "./Icon.astro";
+import { site } from "../data/site";
+
+// Mensaje precargado: quien pulsa ya llega con el contexto escrito.
+const text = "Hola, me gustaría reservar mi diagnóstico gratuito.";
+const href = `${site.whatsapp}?text=${encodeURIComponent(text)}`;
+---
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="wa-fab"
+  aria-label="Escríbenos por WhatsApp"
+>
+  <span class="wa-fab__icon"><Icon name="whatsapp" class="h-6 w-6" /></span>
+  <span class="wa-fab__label">WhatsApp</span>
+</a>
+
+<style is:global>
+  /* Botón flotante de WhatsApp: turquesa de marca con texto tinta (8:1) en ambos temas.
+     Círculo en móvil, píldora con etiqueta desde 640px. */
+  .wa-fab {
+    position: fixed;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    z-index: 40;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 3.5rem;
+    padding: 0 1rem;
+    border-radius: 9999px;
+    background: var(--color-cyan-500);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    box-shadow: 0 14px 32px -10px rgba(15, 194, 192, 0.65), 0 0 0 3px rgba(255, 255, 255, 0.9);
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease;
+  }
+  .wa-fab:hover { transform: translateY(-3px); background: var(--color-cyan-400); }
+  .wa-fab:focus-visible { outline: 3px solid var(--color-ink); outline-offset: 4px; }
+  [data-theme="dark"] .wa-fab { box-shadow: 0 14px 32px -10px rgba(15, 194, 192, 0.55), 0 0 0 3px rgba(26, 5, 51, 0.9); }
+  [data-theme="dark"] .wa-fab:focus-visible { outline-color: #fff; }
+
+  /* onda de pulso alrededor del icono */
+  .wa-fab::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--color-cyan-500);
+    opacity: 0.55;
+    z-index: -1;
+    animation: ping 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  .wa-fab__icon { display: grid; place-items: center; }
+  .wa-fab__label { display: none; }
+
+  @media (max-width: 639px) {
+    .wa-fab { width: 3.5rem; padding: 0; justify-content: center; }
+  }
+  @media (min-width: 640px) {
+    .wa-fab { right: 1.5rem; bottom: 1.5rem; padding: 0 1.4rem 0 1.1rem; }
+    .wa-fab__label { display: inline; }
+  }
+  @media print { .wa-fab { display: none; } }
+</style>
