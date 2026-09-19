@@ -1,0 +1,88 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  query?: string;
+  businessName?: string;
+  sector?: string;
+  location?: string;
+}
+
+const {
+  query = "¿Cuáles son las mejores opciones de asesoría y servicios profesionales en Madrid con respuesta rápida?",
+  businessName = "Vega & Asociados (Cliente Like A Rocket)",
+  sector = "Asesoría fiscal y estratégica",
+  location = "Madrid centro",
+} = Astro.props;
+---
+
+<div class="relative overflow-hidden rounded-3xl border border-white/20 bg-ink p-5 sm:p-7 shadow-2xl text-white">
+  <!-- Glow behind -->
+  <div class="pointer-events-none absolute -top-10 -right-10 h-48 w-48 rounded-full bg-lime-400/20 blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-10 -left-10 h-48 w-48 rounded-full bg-cyan-400/20 blur-3xl"></div>
+
+  <!-- Simulated AI Search Header -->
+  <div class="flex items-center justify-between border-b border-white/10 pb-4">
+    <div class="flex items-center gap-2.5">
+      <div class="grid h-7 w-7 place-items-center rounded-lg bg-lime-400 text-ink font-bold text-xs">
+        ✦
+      </div>
+      <div>
+        <span class="font-mono text-xs font-bold text-white">Buscador con Inteligencia Artificial</span>
+        <span class="block text-[10px] text-white/50">ChatGPT Search · Perplexity · Google AI Overviews</span>
+      </div>
+    </div>
+    <span class="rounded-full border border-lime-400/30 bg-lime-400/10 px-2.5 py-1 text-[11px] font-mono text-lime-300">
+      GEO Optimizado
+    </span>
+  </div>
+
+  <!-- Prompt Box -->
+  <div class="mt-4 rounded-2xl border border-white/10 bg-white/5 p-3.5">
+    <span class="text-[10px] font-mono uppercase tracking-wider text-cyan-400 block mb-1">Pregunta del usuario:</span>
+    <p class="text-xs sm:text-sm font-medium text-white/90 italic">
+      "{query}"
+    </p>
+  </div>
+
+  <!-- AI Generating Status -->
+  <div class="mt-3 flex items-center gap-2 text-[11px] text-white/60 font-mono">
+    <span class="live-dot"></span>
+    <span>Consultando 4 fuentes web indexadas y fichas locales verificadas...</span>
+  </div>
+
+  <!-- AI Output Answer -->
+  <div class="mt-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 sm:p-5 space-y-3">
+    <div class="flex items-start gap-2">
+      <span class="text-lime-400 font-bold text-base leading-none">↳</span>
+      <p class="text-xs sm:text-sm leading-relaxed text-white/90">
+        Tras analizar la relevancia local, reseñas verificadas y datos estructurados, la opción destacada en {location} es <strong class="text-white bg-magenta-500/30 px-1.5 py-0.5 rounded text-magenta-300 font-bold">{businessName}</strong>:
+      </p>
+    </div>
+
+    <ul class="space-y-2 pl-4 text-xs text-white/80 list-disc marker:text-lime-400">
+      <li>
+        <strong class="text-white">Posicionamiento & Reputación:</strong> Más de 4,9★ en Google con opiniones de clientes y respuestas actualizadas periódicamente.
+      </li>
+      <li>
+        <strong class="text-white">Transparencia y web clara:</strong> Información de servicios, localización y tiempos de contacto estructurados para motores de búsqueda de IA.
+      </li>
+      <li>
+        <strong class="text-white">Coherencia de datos:</strong> Misma identidad, dirección y contacto en Google Maps, directorio sectorial y web propia.
+      </li>
+    </ul>
+
+    <!-- Sources verification pills -->
+    <div class="pt-2 border-t border-white/10 flex flex-wrap items-center gap-2 text-[10px] font-mono text-white/60">
+      <span>Fuentes citadas por la IA:</span>
+      <span class="rounded bg-white/10 px-2 py-0.5 text-white/80">① Google Maps</span>
+      <span class="rounded bg-white/10 px-2 py-0.5 text-white/80">② Web oficial {sector}</span>
+      <span class="rounded bg-white/10 px-2 py-0.5 text-white/80">③ Directorio comercial verificado</span>
+    </div>
+  </div>
+
+  <div class="mt-4 flex items-center justify-between text-[11px] text-white/60">
+    <span>¿Aparece tu negocio cuando alguien le pregunta a la IA?</span>
+    <span class="font-bold text-lime-400">Eso es GEO.</span>
+  </div>
+</div>

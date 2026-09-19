@@ -1,0 +1,100 @@
+---
+interface Props {
+  accountName?: string;
+  category?: string;
+  title?: string;
+  subtitle?: string;
+  likes?: string;
+  comments?: string;
+  tag?: string;
+  bgGradient?: string;
+  badge?: string;
+}
+
+const {
+  accountName = "cliente.likearocket",
+  category = "Negocio Local",
+  title = "Cómo multiplicamos reservas un 240%",
+  subtitle = "Estrategia probada paso a paso sin gastar de más.",
+  likes = "1.428",
+  comments = "86",
+  tag = "#MarketingLocal #Crecimiento",
+  bgGradient = "from-magenta-500/20 via-purple-500/10 to-cyan-500/20",
+  badge = "Aprobado para publicar",
+} = Astro.props;
+---
+
+<div class="group relative w-64 shrink-0 overflow-hidden rounded-[2.5rem] border-4 border-ink bg-white shadow-2xl transition duration-300 hover:-translate-y-2 hover:shadow-cyan-500/10">
+  <!-- Phone top speaker notch -->
+  <div class="absolute top-2 left-1/2 -translate-x-1/2 h-4 w-20 rounded-full bg-ink z-20"></div>
+
+  <!-- Social header -->
+  <div class="pt-7 px-4 pb-2 flex items-center justify-between border-b border-ink/5 bg-white text-ink">
+    <div class="flex items-center gap-2">
+      <div class="h-7 w-7 rounded-full bg-gradient-to-tr from-magenta-500 to-cyan-400 p-[1.5px]">
+        <div class="h-full w-full rounded-full bg-white flex items-center justify-center text-[10px] font-bold text-ink">
+          LR
+        </div>
+      </div>
+      <div>
+        <div class="text-[11px] font-bold leading-tight flex items-center gap-1">
+          {accountName}
+          <span class="text-cyan-500 text-[10px]">✓</span>
+        </div>
+        <div class="text-[9px] text-ink/50 leading-tight">{category}</div>
+      </div>
+    </div>
+    <span class="text-ink/40 text-xs font-bold">•••</span>
+  </div>
+
+  <!-- Social Post Creative Visual Body -->
+  <div class={`relative aspect-square w-full bg-gradient-to-br ${bgGradient} p-4 flex flex-col justify-between overflow-hidden`}>
+    <div class="flex justify-between items-start">
+      <span class="rounded-full bg-ink/85 backdrop-blur px-2.5 py-0.5 text-[9px] font-bold text-white tracking-wide">
+        LIKE A ROCKET
+      </span>
+      <span class="rounded-full bg-lime-400 px-2 py-0.5 text-[9px] font-extrabold text-ink">
+        {badge}
+      </span>
+    </div>
+
+    <div class="my-auto py-2 text-center">
+      <h5 class="font-display font-extrabold text-ink text-sm sm:text-base leading-tight">
+        {title}
+      </h5>
+      <p class="mt-1 text-[11px] text-ink/75 font-medium leading-snug">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-white/90 backdrop-blur p-2 text-center border border-white/40 shadow-sm">
+      <span class="text-[10px] font-bold text-magenta-600 block">DESLIZA PARA VER CASO COMPLETO →</span>
+    </div>
+  </div>
+
+  <!-- Social action bar -->
+  <div class="px-4 py-2 bg-white text-ink border-t border-ink/5">
+    <div class="flex items-center justify-between text-base">
+      <div class="flex items-center gap-3">
+        <span class="text-magenta-500">❤️</span>
+        <span>💬</span>
+        <span>✈️</span>
+      </div>
+      <span>🔖</span>
+    </div>
+    <div class="mt-1.5 text-[10px] font-bold text-ink">
+      {likes} Me gusta
+    </div>
+    <p class="text-[10px] text-ink/70 line-clamp-2 mt-0.5 leading-snug">
+      <strong class="text-ink font-semibold">{accountName}</strong> Nueva estrategia desplegada este mes. Contenido aprobado previamente sin estrés. {tag}
+    </p>
+    <div class="mt-1 text-[9px] text-ink/40">
+      Ver los {comments} comentarios
+    </div>
+  </div>
+
+  <!-- Bottom home bar -->
+  <div class="py-1 flex justify-center bg-white">
+    <div class="h-1 w-24 rounded-full bg-ink/30"></div>
+  </div>
+</div>

@@ -5,7 +5,13 @@
 @import "@fontsource/poppins/600.css";
 @import "@fontsource/poppins/700.css";
 @import "@fontsource/poppins/800.css";
-@import "@fontsource/bagel-fat-one/400.css";
+@font-face {
+  font-family: "TAN Nimbus";
+  src: url("/fonts/TAN-NIMBUS.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
 
 /* ------------------------------------------------------------------
    LIKE A ROCKET — sistema de marca
@@ -14,13 +20,14 @@
    Color   Magenta #F20587 · Turquesa #0FC2C0 · Lima #DBF227 · Púrpura #A054F6
            Lavanda (fondo neutro) · Tinta (púrpura casi negro)
    Tipos   TT Hazelnuts  -> sustituto libre: Poppins (títulos + UI)
-           Tan Nimbus    -> sustituto libre: Bagel Fat One (acento "groovy", uso puntual)
+           TAN Nimbus    -> archivo original de marca (acento puntual)
            Cuerpo largo  -> Inter (legibilidad; el brief pide "móvil primero" y "simpleza")
 ------------------------------------------------------------------ */
 @theme {
+  --radius-button: 9999px;
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Poppins", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-groovy: "Bagel Fat One", "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-groovy: "TAN Nimbus", "Poppins", ui-sans-serif, system-ui, sans-serif;
 
   /* tinta: púrpura muy oscuro (texto y secciones "dark") */
   --color-ink: #190a33;
@@ -97,7 +104,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    border-radius: 9999px;
+    border-radius: var(--radius-button);
     padding: 0.8rem 1.6rem;
     font-family: var(--font-display);
     font-size: 0.9rem;
@@ -169,7 +176,7 @@
   .arch-sm { border-radius: 3rem 3rem 0.75rem 0.75rem; overflow: hidden; }
 }
 
-/* acento groovy (Tan Nimbus -> Bagel Fat One). Uso muy puntual. */
+/* TAN Nimbus original de marca. Uso puntual en destacados. */
 .groovy {
   font-family: var(--font-groovy);
   font-weight: 400;
@@ -283,10 +290,52 @@
 .group:hover .link-arrow svg,
 .link-arrow:hover svg { transform: translateX(5px); }
 
-.card-hover { transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease; }
+.card-hover { transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease, border-color 0.25s ease; }
 .card-hover:hover { transform: translateY(-6px); box-shadow: 0 26px 50px -24px color-mix(in srgb, var(--color-ink) 45%, transparent); }
 
 .pop-in { animation: lar-pop 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* --- acabados premium: cristal, resplandor y bordes activos --- */
+.glass-dark {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.glass-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(25, 10, 51, 0.08);
+}
+.glow-magenta { box-shadow: 0 12px 40px -10px rgba(242, 5, 135, 0.4); }
+.glow-cyan    { box-shadow: 0 12px 40px -10px rgba(15, 194, 192, 0.4); }
+.glow-lime    { box-shadow: 0 12px 40px -10px rgba(219, 242, 39, 0.35); }
+
+/* pulso de disponibilidad en directo */
+.live-dot {
+  position: relative;
+  display: inline-flex;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background-color: #10b981;
+}
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  background-color: #10b981;
+  opacity: 0.75;
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
 
 /* --- transiciones de página (View Transitions API) --- */
 @view-transition { navigation: auto; }
@@ -303,3 +352,99 @@
   .reveal-ready .reveal { opacity: 1 !important; transform: none !important; }
   @view-transition { navigation: none; }
 }
+
+
+
+
+/* Theme surfaces keep brand colors separate from readable text colors. */
+:root {
+  color-scheme: light;
+  --page-bg: #ffffff;
+  --panel-bg: #f2eef8;
+  --readable: #190a33;
+  --muted: #594b6b;
+  --line: #d3cadd;
+  --link-accent: #a90060;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page-bg: #1a0533; /* Violet from the original Odoo homepage. */
+  --panel-bg: #28123f;
+  --readable: #faf7ff;
+  --muted: #d0c4df;
+  --line: #3e2554;
+  --link-accent: #ff83c7;
+}
+body { background: var(--page-bg); color: var(--readable); }
+.brand-logo-dark { display: none; }
+[data-theme="dark"] .brand-logo-light { display: none; }
+[data-theme="dark"] .brand-logo-dark { display: block; }
+.theme-toggle {
+  display: inline-flex; align-items: center; gap: .5rem; flex-shrink: 0;
+  padding: .5rem; border: 1px solid #887a9d; border-radius: var(--radius-button);
+  color: var(--readable); background: var(--page-bg); cursor: pointer;
+  font-size: .75rem; font-weight: 600;
+}
+.theme-toggle-track { width: 2rem; height: 1.15rem; padding: 2px; border-radius: 99px; background: #746381; display: block; }
+.theme-toggle-thumb { display: block; width: .9rem; height: .9rem; border-radius: 50%; background: white; }
+[data-theme="dark"] .theme-toggle-track { background: #a90060; }
+[data-theme="dark"] .theme-toggle-thumb { transform: translateX(.85rem); }
+@media (max-width: 1100px) { .theme-toggle-label { display: none; } }
+@media (max-width: 1023px) { .theme-toggle { margin-left: auto; } }
+
+/* Shared contrast corrections in both themes. */
+.btn-primary, .btn-sm.btn-primary { background: #b00065; color: #fff; box-shadow: none; }
+.btn-primary:hover { background: #940054; }
+.prose-lr { color: var(--muted); }
+.text-gradient { background: none; color: var(--link-accent); -webkit-text-fill-color: currentColor; }
+[class~="text-cyan-600"], [class~="text-cyan-700"], .eyebrow { color: #006d6b; }
+[class~="text-lime-600"], [class~="text-lime-700"] { color: #546000; }
+[class~="text-ink/40"], [class~="text-ink/45"], [class~="text-ink/50"], [class~="text-ink/60"] { color: var(--muted); }
+:is(.bg-ink, .bg-footer) { --muted: #d0c4df; --link-accent: #ff83c7; }
+:is(.bg-ink, .bg-footer) [class*="text-white/"] { color: #d0c4df; }
+:is(.bg-ink, .bg-footer) .eyebrow { color: #3ad9d7; }
+
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .home-hero { background: var(--page-bg); }
+[data-theme="dark"] :is(.bg-cloud, .bg-cloud-deep) { background: var(--panel-bg); }
+[data-theme="dark"] :is(.bg-ink, .bg-footer) { background-color: #130423; }
+[data-theme="dark"] [class*="text-ink/"],
+[data-theme="dark"] :is(.hero-description, .hero-note) { color: var(--muted); }
+[data-theme="dark"] .text-ink,
+[data-theme="dark"] .hero-copy .eyebrow { color: var(--readable); }
+[data-theme="dark"] [class*="border-ink"],
+[data-theme="dark"] :is(.home-hero, .hero-brand) { border-color: var(--line); }
+[data-theme="dark"] .hero-copy h1 span { color: var(--link-accent); }
+[data-theme="dark"] :is(.text-magenta-500, .text-magenta-600) { color: #ff83c7; }
+[data-theme="dark"] :is(.text-cyan-600, .text-cyan-700, .eyebrow) { color: #3ad9d7; }
+[data-theme="dark"] :is(.text-purple-500, .text-purple-600) { color: #c8a0ff; }
+[data-theme="dark"] :is(.text-lime-600, .text-lime-700) { color: #dbf227; }
+[data-theme="dark"] a[aria-current="page"] { color: #ff83c7; }
+[data-theme="dark"] .btn-dark { color: var(--readable); border-color: #887a9d; }
+[data-theme="dark"] .btn-dark:hover { background: var(--panel-bg); }
+[data-theme="dark"] :is(input, select, textarea) { background-color: var(--panel-bg); color: var(--readable); border-color: var(--line); }
+[data-theme="dark"] :is(input, textarea)::placeholder { color: var(--muted); }
+[data-theme="dark"] .post-body { color: var(--muted); }
+/* Bright brand surfaces keep dark lettering in either mode. */
+[data-theme="dark"] :is(.bg-lime-400, .bg-lime-500, .bg-cyan-500) { color: #190a33; }
+[data-theme="dark"] :is(.bg-lime-400, .bg-lime-500, .bg-cyan-500) .text-ink { color: #190a33; }
+:focus-visible { outline: 3px solid var(--link-accent); outline-offset: 4px; }
+
+/* Interaction states must not fall back to light-theme ink on dark surfaces. */
+[data-theme="dark"] [class~="hover:text-ink"]:hover { color: var(--readable); }
+[data-theme="dark"] [class~="hover:text-magenta-600"]:hover { color: var(--link-accent); }
+[data-theme="dark"] [class~="hover:bg-cloud"]:hover { background-color: var(--panel-bg); }
+.group:hover [class~="group-hover:bg-cyan-500"],
+.group:hover [class~="group-hover:bg-lime-500"] { color: #190a33; }
+.group:hover [class~="group-hover:bg-magenta-500"] { color: #fff; background-color: #b00065; }
+.bg-cyan-500.text-white { color: #190a33; }
+.bg-footer { color: #d0c4df; }
+form :is(input:not([type="hidden"]), select, textarea) { border-color: #887a9d; }
+form :is(input, select, textarea):focus { border-color: var(--link-accent); outline: 2px solid var(--link-accent); outline-offset: 2px; }
+/* Ensure small colored text remains legible on the pale surfaces. */
+[data-theme="light"] .text-cyan-500 { color: #006d6b; }
+[data-theme="light"] :is(.bg-ink, .bg-footer) .text-cyan-500 { color: #3ad9d7; }
+
+/* Quiet decorative outlines; interactive fields retain stronger boundaries. */
+[data-theme="dark"] .border-2[class*="border-ink"] { border-width: 1px; }
+[data-theme="dark"] header summary { border-color: #887a9d; }

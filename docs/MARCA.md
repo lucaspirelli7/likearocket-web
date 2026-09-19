@@ -66,3 +66,6 @@ haga esperar al usuario, una sola animación "en bucle" visible por zona.
 
 Fuente original de los PNG: carpeta del proyecto (`Like-a-Rocket-logo*.png`, `favicon.png`).
 Idealmente sustituir por SVG vectorial cuando esté disponible.
+
+## Actualización de tipografía
+TAN Nimbus original incorporada desde el archivo aportado por el cliente en public/fonts/TAN-NIMBUS.ttf. La variable --font-groovy y la clase .groovy utilizan esta fuente en lugar de Bagel Fat One. En portada se aplica a «gran paso». Poppins e Inter siguen en títulos generales, navegación y texto de lectura.

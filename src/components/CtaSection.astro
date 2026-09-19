@@ -1,6 +1,5 @@
 ---
 import { primaryCta, secondaryCta } from "../data/site";
-import Icon from "./Icon.astro";
 import Reveal from "./Reveal.astro";
 interface Props {
   title?: string;
@@ -19,7 +18,7 @@ const {
   </div>
   <div class="container-page relative py-20 text-center sm:py-24">
     <Reveal>
-      <span class="eyebrow text-cyan-400"><Icon name="rocket" class="h-4 w-4" /> Diagnóstico gratuito</span>
+      <span class="eyebrow text-cyan-400">Diagnóstico gratuito</span>
     </Reveal>
     <Reveal as="h2" delay={80} class="mx-auto mt-4 max-w-2xl text-3xl sm:text-4xl">{title}</Reveal>
     <Reveal as="p" delay={140} class="mx-auto mt-4 max-w-xl text-white/70">{body}</Reveal>

@@ -1,0 +1,29 @@
+---
+---
+<button type="button" class="theme-toggle" role="switch" aria-checked="true" aria-label="Modo oscuro" data-theme-toggle>
+  <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span>
+  <span class="theme-toggle-label" data-theme-label>Oscuro</span>
+</button>
+
+<script>
+  const syncThemeSwitch = () => {
+    const dark = document.documentElement.dataset.theme !== "light";
+    document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+      button.setAttribute('aria-checked', String(dark));
+      const label = button.querySelector('[data-theme-label]');
+      if (label) label.textContent = dark ? 'Oscuro' : 'Claro';
+    });
+  };
+  document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element) || !event.target.closest('[data-theme-toggle]')) return;
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem('lar-theme', theme); } catch {}
+    syncThemeSwitch();
+  });
+  document.addEventListener('astro:before-swap', (event) => {
+    event.newDocument.documentElement.dataset.theme = document.documentElement.dataset.theme ?? 'dark';
+  });
+  document.addEventListener('astro:page-load', syncThemeSwitch);
+  syncThemeSwitch();
+</script>

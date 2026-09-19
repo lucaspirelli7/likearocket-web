@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Icon from "../components/Icon.astro";
 import CtaSection from "../components/CtaSection.astro";
 import Reveal from "../components/Reveal.astro";
 import { publishableResults } from "../data/results";
@@ -14,7 +13,7 @@ const cases = publishableResults();
   <section class="relative overflow-hidden bg-ink text-white">
     <div class="animate-blob pointer-events-none absolute -left-24 -top-24 h-96 w-96 bg-cyan-500/25 blur-3xl"></div>
     <div class="container-page relative py-16 lg:py-24">
-      <Reveal as="span" class="eyebrow text-cyan-400"><Icon name="target" class="h-4 w-4 animate-float" /> Resultados</Reveal>
+      <Reveal as="span" class="eyebrow text-cyan-400">Resultados</Reveal>
       <Reveal as="h1" delay={80} class="mt-5 max-w-3xl text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
         Casos reales, <span class="groovy text-lime-500">sin pared de logos</span>.
       </Reveal>
@@ -27,7 +26,6 @@ const cases = publishableResults();
 
   <div class="container-page py-16 sm:py-20">
     <div class="mb-10 flex items-start gap-3 rounded-2xl border border-lime-500/40 bg-lime-500/10 p-5 text-sm text-ink/75">
-      <Icon name="rocket" class="mt-0.5 h-5 w-5 shrink-0 text-lime-600" />
       <p>
         <strong>Nota para el equipo (quitar antes de lanzar):</strong> los casos de abajo están
         redactados sin cifras porque aún no están verificadas ni autorizadas. Confirmar permisos

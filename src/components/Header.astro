@@ -1,19 +1,21 @@
 ---
 import { nav, primaryCta, site } from "../data/site";
 import Icon from "./Icon.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 const isActive = (href: string) =>
   href === "/" ? path === "/" : path.startsWith(href);
 const serviceItem = nav.find((n) => "children" in n && n.children);
 ---
 
-<header class="sticky top-0 z-50 border-b border-ink/10 bg-white/85 backdrop-blur">
-  <div class="container-page flex h-16 items-center justify-between gap-4">
+<header class="sticky top-0 z-50 border-b border-ink/10 bg-white">
+  <div class="container-page flex h-20 items-center justify-between gap-4">
     <a href="/" class="flex shrink-0 items-center" aria-label="Like A Rocket — inicio">
-      <img src="/brand/logo.png" alt="Like A Rocket" width="1154" height="516" class="h-9 w-auto" />
+      <img src="/brand/logo.png" alt="Like A Rocket" width="1154" height="516" class="brand-logo-light h-11 w-auto sm:h-12" />
+      <img src="/brand/logo-white.png" alt="Like A Rocket" width="1154" height="516" class="brand-logo-dark h-11 w-auto sm:h-12" />
     </a>
 
-    <nav class="hidden items-center gap-7 lg:flex" aria-label="Principal">
+    <nav class="hidden items-center gap-5 xl:gap-7 lg:flex" aria-label="Principal">
       <div class="group relative">
         <button
           class="flex items-center gap-1 text-sm font-medium text-ink/80 hover:text-ink aria-[current=page]:text-magenta-600"
@@ -52,16 +54,18 @@ const serviceItem = nav.find((n) => "children" in n && n.children);
       ))}
     </nav>
 
-    <a href={primaryCta.href} class="btn-primary btn-sm hidden shrink-0 lg:inline-flex">
+    <a href={primaryCta.href} class="header-cta btn-primary btn-sm hidden shrink-0 lg:inline-flex">
       {primaryCta.shortLabel}
     </a>
+
+    <ThemeToggle />
 
     <details class="lg:hidden">
       <summary class="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-lg border border-ink/15">
         <span class="sr-only">Abrir menú</span>
         <Icon name="menu" class="h-5 w-5" />
       </summary>
-      <div class="absolute inset-x-0 top-16 border-b border-ink/10 bg-white p-5 shadow-lg">
+      <div class="absolute inset-x-0 top-20 border-b border-ink/10 bg-white p-5 shadow-lg">
         <ul class="flex flex-col gap-1">
           {serviceItem?.children?.map((c) => (
             <li>
@@ -86,3 +90,7 @@ const serviceItem = nav.find((n) => "children" in n && n.children);
     </details>
   </div>
 </header>
+
+<style>
+  .header-cta.btn-primary { box-shadow: none; background: var(--color-magenta-600); }
+</style>

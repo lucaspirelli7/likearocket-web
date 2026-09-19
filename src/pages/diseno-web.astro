@@ -2,22 +2,6 @@
 import ServiceLayout from "../layouts/ServiceLayout.astro";
 import Steps from "../components/Steps.astro";
 import CheckList from "../components/CheckList.astro";
-import SiteMockup from "../components/SiteMockup.astro";
-
-const M = "#f20587";
-const C = "#0fc2c0";
-const L = "#dbf227";
-const P = "#a054f6";
-
-const portfolio = [
-  { name: "Asesoría local", tag: "Web corporativa + captación", variant: 2, a: P, b: C, url: "asesoria-vega.es" },
-  { name: "Restaurante", tag: "Landing + reservas", variant: 3, a: M, b: L, url: "lacocinade.es" },
-  { name: "Clínica", tag: "Web multiservicio", variant: 4, a: C, b: P, url: "clinicasalud.es" },
-  { name: "Inmobiliaria", tag: "Portal de contacto", variant: 1, a: P, b: M, url: "fincasdelnorte.es" },
-  { name: "Turismo rural", tag: "Web + motor de reserva", variant: 3, a: L, b: C, url: "casaruralrocket.es" },
-  { name: "Servicios técnicos", tag: "Landing de campaña", variant: 4, a: M, b: P, url: "reformas-express.es" },
-] as const;
-
 const proceso = [
   { title: "Nos cuentas tu caso", body: "Qué haces, a quién te diriges y qué quieres que consiga la web. Reunimos referencias y accesos." },
   { title: "Primera propuesta", body: "En 1–2 semanas ves el diseño de las páginas clave. Aún a tiempo de cambiar el rumbo." },
@@ -28,32 +12,23 @@ const proceso = [
 
 <ServiceLayout
   slug="diseno-web"
-  intro="Esta página se vende viéndose, no leyéndose. El bloque principal es el portafolio: mira lo que hacemos y hablamos de tu proyecto. Cada web se presupuesta caso a caso, sin paquete cerrado."
+  intro="Una web que explique lo que haces y facilite que te contacten. Partimos de lo que necesita tu negocio y preparamos una propuesta a medida."
 >
-  <section>
-    <span class="eyebrow">Trabajos anteriores</span>
-    <h2 class="mt-3 text-2xl sm:text-3xl">Webs que ya están trabajando para su negocio.</h2>
-    <p class="prose-lr mt-3 max-w-2xl">
-      Una muestra por sector. <em>Marcadores de posición</em>: son maquetas de ejemplo; antes
-      del lanzamiento se sustituyen por capturas y enlaces de proyectos reales.
-    </p>
-    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {portfolio.map((p) => (
-        <figure class="group card-hover overflow-hidden rounded-2xl border-2 border-ink/10 bg-white">
-          <div class="overflow-hidden bg-cloud p-3">
-            <SiteMockup
-              variant={p.variant}
-              accent={p.a}
-              accent2={p.b}
-              label={p.url}
-              class="w-full rounded-lg shadow-sm transition-transform duration-500 group-hover:scale-[1.03]"
-            />
-          </div>
-          <figcaption class="border-t border-ink/10 px-4 py-4">
-            <p class="font-display font-semibold">{p.name}</p>
-            <p class="text-sm text-ink/55">{p.tag}</p>
-          </figcaption>
-        </figure>
+  <section aria-labelledby="web-options">
+    <span class="eyebrow">Tu punto de partida</span>
+    <h2 id="web-options" class="mt-3 text-2xl sm:text-3xl">Una web según lo que necesitas.</h2>
+    <p class="prose-lr mt-4 max-w-2xl">Empezamos por el objetivo. Después definimos la estructura, el contenido y el diseño que lo acompañan.</p>
+    <div class="mt-10 border-t border-ink/20">
+      {[
+        { title: "Landing de campaña", body: "Una página centrada en una oferta. El anuncio y el contenido cuentan la misma historia, con un camino claro hacia la llamada o el formulario.", goal: "Dar el siguiente paso", color: "text-magenta-600" },
+        { title: "Web de servicios", body: "Un lugar para explicar qué haces, resolver las dudas de tus clientes y mostrar por qué pueden confiar en tu negocio.", goal: "Entenderte y contactar", color: "text-cyan-600" },
+        { title: "Rediseño de tu web", body: "Revisamos lo que ya tienes y mejoramos la estructura, la navegación y el recorrido hacia la consulta, conservando lo que funciona.", goal: "Mejorar lo que ya tienes", color: "text-purple-600" },
+      ].map((item, i) => (
+        <article class="grid gap-4 border-b border-ink/20 py-8 sm:grid-cols-[4rem_1fr] lg:grid-cols-[4rem_1fr_1.3fr] lg:gap-8">
+          <span aria-hidden="true" class={`groovy text-4xl ${item.color}`}>0{i + 1}</span>
+          <div><h3 class="text-xl">{item.title}</h3><p class={`mt-3 text-sm font-semibold ${item.color}`}>{item.goal}</p></div>
+          <p class="prose-lr text-base sm:col-start-2 lg:col-start-auto">{item.body}</p>
+        </article>
       ))}
     </div>
   </section>

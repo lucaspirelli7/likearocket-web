@@ -45,10 +45,20 @@ export const nav = [
 // (en /sobre-nosotros y en el bloque "Quiénes somos" de la home). Estos datos
 // quedan aquí listos para volver a mostrarla.
 export const team = [
-  { name: "Pedro de Gabriel", role: "CEO · Estrategia" },
-  { name: "Aitor Mariscal", role: "Dirección de operaciones y clientes" },
-  { name: "Sandra Sales", role: "Dirección técnica · Desarrollo web" },
-  { name: "Lucas A. Pirell", role: "Marketing y desarrollo web" },
+  {
+    name: "Pedro de Gabriel",
+    role: "CEO · Estrategia",
+    specialty: "Crecimiento & Posicionamiento",
+    avatar: "/team/4.jpg",
+    accent: "border-magenta-500",
+  },
+  {
+    name: "Lucas A. Pirell",
+    role: "Marketing y desarrollo web",
+    specialty: "GEO IA & Creatividad",
+    avatar: "/team/1.jpg",
+    accent: "border-lime-500",
+  },
 ] as const;
 
 export const processSteps = [

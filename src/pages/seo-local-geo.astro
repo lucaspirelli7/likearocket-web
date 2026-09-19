@@ -2,6 +2,7 @@
 import ServiceLayout from "../layouts/ServiceLayout.astro";
 import Panel from "../components/Panel.astro";
 import CheckList from "../components/CheckList.astro";
+import GeoAiMockup from "../components/GeoAiMockup.astro";
 ---
 
 <ServiceLayout
@@ -32,19 +33,32 @@ import CheckList from "../components/CheckList.astro";
     </div>
   </section>
 
-  <Panel title="GEO — aparecer en los buscadores de IA" tone="lime">
-    <p>
-      GEO son las siglas de <em>Generative Engine Optimization</em>. Cuando alguien le pregunta a
-      ChatGPT, Perplexity o Google por "el mejor [tu sector] en [tu ciudad]", esas herramientas
-      responden con una recomendación. GEO es el trabajo de que tu negocio sea uno de los que
-      aparecen en esa respuesta.
-    </p>
-    <p>
-      Es una disciplina nueva: casi ninguna agencia la ofrece todavía. Se apoya en tener datos
-      coherentes y bien estructurados entre tu web, tu ficha y los directorios, de forma que los
-      modelos de IA "entiendan" a qué te dedicas y dónde.
-    </p>
-  </Panel>
+  <!-- Simulador Visual de GEO e Inteligencia Artificial -->
+  <section class="space-y-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <span class="eyebrow">Exclusivo de Like A Rocket</span>
+        <h2 class="mt-2 text-2xl sm:text-3xl">GEO — Aparecer en los buscadores de IA</h2>
+      </div>
+      <span class="hidden sm:inline-flex rounded-full bg-lime-400 px-3 py-1 text-xs font-black text-ink">
+        Nuevo estándar 2026
+      </span>
+    </div>
+
+    <GeoAiMockup />
+
+    <Panel title="Cómo funciona el posicionamiento GEO" tone="lime">
+      <p>
+        GEO son las siglas de <em>Generative Engine Optimization</em>. Cuando un usuario le pregunta a
+        ChatGPT, Perplexity o Google por "el mejor [tu sector] en [tu ciudad]", esas herramientas
+        sintetizan recomendaciones directas. GEO es el trabajo de estructurar tu presencia para que tu negocio sea el recomendado.
+      </p>
+      <p>
+        Es una disciplina de vanguardia que casi ninguna agencia tradicional ofrece todavía. Se basa en una arquitectura de datos
+        impecable entre tu web, tus reseñas y tus menciones locales, facilitando que los modelos de lenguaje elijan tu negocio como la opción más fiable.
+      </p>
+    </Panel>
+  </section>
 
   <section class="rounded-2xl border border-ink/15 bg-cloud p-6 sm:p-8">
     <h2 class="text-xl">Qué no incluye</h2>

@@ -6,6 +6,7 @@ import Steps from "../components/Steps.astro";
 import CtaSection from "../components/CtaSection.astro";
 import Reveal from "../components/Reveal.astro";
 import Marquee from "../components/Marquee.astro";
+
 import { services } from "../data/services";
 import { primaryCta, secondaryCta, processSteps } from "../data/site";
 import { getFeaturedResult } from "../data/results";
@@ -14,51 +15,25 @@ const featured = getFeaturedResult();
 ---
 
 <BaseLayout>
-  <!-- Hero -->
-  <section class="relative overflow-hidden bg-ink text-white">
-    <div class="pointer-events-none absolute inset-0 opacity-70">
-      <div class="animate-blob absolute -top-40 right-[-8rem] h-[34rem] w-[34rem] bg-magenta-500/30 blur-3xl"></div>
-      <div class="animate-blob absolute -bottom-48 -left-32 h-[32rem] w-[32rem] bg-cyan-500/25 blur-3xl" style="animation-delay:-6s"></div>
-      <div class="animate-float-slow absolute left-1/2 top-10 h-64 w-64 rounded-full bg-purple-500/25 blur-3xl"></div>
-    </div>
-
-    <div class="container-page relative grid gap-12 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:py-28">
-      <div>
-        <Reveal as="span" class="eyebrow text-cyan-400">
-          <Icon name="rocket" class="h-4 w-4 animate-float" /> Agencia de marketing digital
-        </Reveal>
-        <Reveal as="h1" delay={80} class="mt-5 text-4xl leading-[1.03] sm:text-5xl lg:text-[4rem]">
-          Webs que <span class="text-gradient">venden</span><br class="hidden sm:block" />
-          y campañas que <span class="groovy text-lime-500">traen clientes</span>.
-        </Reveal>
-        <Reveal as="p" delay={160} class="mt-6 max-w-xl text-lg text-white/70">
-          Tanto si aún no tienes web como si ya la tienes y quieres que traiga clientes:
-          montamos la presencia digital que hace que te contacten, y la mantenemos funcionando.
-        </Reveal>
-        <Reveal delay={240} class="mt-8 flex flex-col gap-3 sm:flex-row">
+  <!-- Primera propuesta visual: identidad original y composición limpia. -->
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="container-page hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Diseño web y marketing digital</p>
+        <h1 id="home-title">Webs que venden.<br />Campañas que <span>traen clientes.</span></h1>
+        <p class="hero-description">Creamos tu web y te ayudamos a llegar a más clientes. Si ya tienes una, hacemos que trabaje mejor para tu negocio.</p>
+        <div class="hero-actions">
           <a href={primaryCta.href} class="btn-primary">{primaryCta.label}</a>
-          <a href={secondaryCta.href} class="btn-ghost">{secondaryCta.label}</a>
-        </Reveal>
+          <a href={secondaryCta.href} class="hero-secondary">{secondaryCta.label} <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="hero-note">Empezamos por conocerte. Te proponemos lo que tu negocio necesita.</p>
       </div>
-
-      <div class="relative self-center">
-        <ul class="grid content-start gap-3">
-          {services.map((s, i) => (
-            <Reveal as="li" variant="right" delay={i * 90}>
-              <a href={`/${s.slug}`} class="group flex items-center justify-between gap-4 rounded-2xl border border-white/12 bg-white/5 px-5 py-4 backdrop-blur transition hover:border-white/40 hover:bg-white/10">
-                <span>
-                  <span class="font-display font-semibold">{s.name}</span>
-                  <span class="block text-sm text-white/55">{s.descriptor}</span>
-                </span>
-                <span class="link-arrow"><Icon name="arrow" class="h-4 w-4 text-white/60" /></span>
-              </a>
-            </Reveal>
-          ))}
-        </ul>
+      <div class="hero-brand" aria-hidden="true">
+        <img src="/brand/rocket.png" alt="" width="274" height="274" fetchpriority="high" />
+        <p>Tu próximo<br /><strong class="groovy">gran paso.</strong></p>
       </div>
     </div>
   </section>
-
   <!-- Marquee -->
   <div class="border-y-2 border-ink bg-lime-500 py-3 text-ink">
     <Marquee items={["Diseño Web", "Paid Media", "SEO Local", "GEO · IA", "Social Media", "Diagnóstico gratis", "Webs que venden"]} />
@@ -67,7 +42,7 @@ const featured = getFeaturedResult();
   <!-- Servicios -->
   <section class="container-page py-20 sm:py-24">
     <Reveal class="max-w-2xl">
-      <span class="eyebrow"><Icon name="rocket" class="h-4 w-4" /> Qué hacemos</span>
+      <span class="eyebrow">Qué hacemos</span>
       <h2 class="mt-4 text-3xl sm:text-4xl">
         Cuatro servicios, un mismo objetivo: <span class="text-gradient">que te contacten más</span>.
       </h2>
@@ -85,12 +60,35 @@ const featured = getFeaturedResult();
     </div>
   </section>
 
+  <section class="border-t border-ink/15" aria-labelledby="starting-point">
+    <div class="container-page py-16 sm:py-20">
+      <div class="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
+        <div>
+          <p class="eyebrow text-magenta-600">Tu punto de partida</p>
+          <h2 id="starting-point" class="mt-5 text-3xl leading-tight sm:text-4xl">¿Dónde está<br />tu negocio hoy?</h2>
+          <p class="prose-lr mt-5 max-w-sm">No todos los negocios necesitan lo mismo. Antes de proponerte nada, queremos entender qué te está frenando.</p>
+        </div>
+        <div>
+          <article class="border-b border-ink/20 pb-7">
+            <h3 class="text-xl sm:text-2xl">Necesito una web.</h3>
+            <p class="prose-lr mt-3 text-base">Empezamos por explicar bien qué haces, a quién ayudas y cómo contactar contigo. Diseñamos la web alrededor de eso.</p>
+            <a href="/diseno-web" class="mt-4 inline-block text-sm font-semibold underline underline-offset-4 hover:text-magenta-600">Conoce el servicio de diseño web</a>
+          </article>
+          <article class="pt-7">
+            <h3 class="text-xl sm:text-2xl">Tengo web, pero llegan pocas consultas.</h3>
+            <p class="prose-lr mt-3 text-base">Revisamos cómo te encuentran y qué pasa al entrar en tu web. Así podemos identificar si conviene mejorar la página, la visibilidad o las campañas.</p>
+            <a href={primaryCta.href} class="mt-5 inline-flex btn-primary">{primaryCta.label}</a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- Cómo trabajamos -->
   <section class="relative overflow-hidden bg-cloud py-20 sm:py-24">
     <div class="animate-blob pointer-events-none absolute -right-24 top-0 h-72 w-72 bg-purple-500/15 blur-3xl"></div>
     <div class="container-page relative">
       <Reveal>
-        <span class="eyebrow"><Icon name="rocket" class="h-4 w-4" /> Cómo trabajamos</span>
+        <span class="eyebrow">Cómo trabajamos</span>
       </Reveal>
       <Reveal delay={80} class="mt-4">
         <Steps steps={processSteps} title="De la primera llamada al informe mensual." />
@@ -102,7 +100,7 @@ const featured = getFeaturedResult();
   <section class="container-page py-20 sm:py-24">
     <Reveal variant="scale" class="grid items-start gap-10 rounded-[2rem] border-2 border-ink/10 bg-white p-8 shadow-[0_40px_80px_-50px_rgba(25,10,51,0.4)] sm:p-12 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
-        <span class="eyebrow"><Icon name="target" class="h-4 w-4" /> Un caso, no una galería</span>
+        <span class="eyebrow">Un caso, no una galería</span>
         <p class="mt-4 text-sm font-semibold text-ink/50">{featured.sector}</p>
         <h2 class="mt-2 text-2xl sm:text-3xl">{featured.headline}</h2>
         <div class="mt-4 flex flex-wrap gap-2">
@@ -131,7 +129,7 @@ const featured = getFeaturedResult();
   <section class="border-t border-ink/10 bg-cloud py-20 sm:py-24">
     <div class="container-page max-w-3xl">
       <Reveal>
-        <span class="eyebrow"><Icon name="rocket" class="h-4 w-4" /> Quiénes somos</span>
+        <span class="eyebrow">Quiénes somos</span>
       </Reveal>
       <Reveal as="h2" delay={80} class="mt-4 text-3xl sm:text-4xl">
         Un equipo pequeño que se mete en cada proyecto <span class="text-gradient">como si fuera propio</span>.
@@ -150,3 +148,28 @@ const featured = getFeaturedResult();
 
   <CtaSection />
 </BaseLayout>
+
+<style>
+  .home-hero { background: var(--page-bg); color: var(--readable); border-bottom: 1px solid var(--line); }
+  .hero-grid { display: grid; grid-template-columns: 1.55fr 1fr; align-items: center; gap: 3rem; padding-block: 5.5rem 6rem; }
+  .hero-copy .eyebrow { color: var(--readable); letter-spacing: .14em; }
+  .hero-copy h1 { margin-top: 1.5rem; font-size: clamp(2.65rem, 4.5vw, 4rem); line-height: 1.12; letter-spacing: -.055em; text-wrap: initial; }
+  .hero-copy h1 span { color: var(--link-accent); }
+  .hero-description { max-width: 32rem; margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.75; color: var(--muted); }
+  .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.4rem; margin-top: 2rem; }
+  .hero-actions .btn-primary { box-shadow: none; background: var(--color-magenta-600); }
+  .hero-secondary { display: inline-flex; align-items: center; gap: .6rem; font-weight: 600; font-size: .9rem; text-decoration: underline; text-underline-offset: .3rem; }
+  .hero-note { margin-top: 1.5rem; max-width: 28rem; font-size: .8rem; line-height: 1.6; color: var(--muted); }
+  .hero-brand { display: flex; flex-direction: column; align-items: center; justify-content: center; border-left: 1px solid var(--line); padding-left: 2rem; min-height: 25rem; }
+  .hero-brand img { width: min(100%, 20rem); height: auto; }
+  .hero-brand p { margin-top: 1rem; text-align: center; font-family: var(--font-display); font-size: 1.35rem; line-height: 1.4; letter-spacing: -.03em; }
+  .hero-brand strong.groovy { display: inline-block; margin-top: .4rem; font-size: 1.65rem; font-weight: 400; line-height: 1.25; }
+  @media (max-width: 767px) {
+    .hero-grid { grid-template-columns: 1fr; padding-block: 3rem; gap: 2.5rem; }
+    .hero-copy h1 { font-size: clamp(2.45rem, 9vw, 3.5rem); }
+    .hero-brand { border-left: 0; border-top: 1px solid var(--line); padding: 1.5rem 0 0; min-height: auto; flex-direction: row; gap: 1rem; }
+    .hero-brand img { width: 9rem; }
+    .hero-brand p { text-align: left; margin: 0; }
+    .hero-actions { align-items: flex-start; flex-direction: column; }
+  }
+</style>
