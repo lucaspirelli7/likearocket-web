@@ -15,7 +15,7 @@ const serviceItem = nav.find((n) => "children" in n && n.children);
       <img src="/brand/logo-white.png" alt="Like A Rocket" width="1154" height="516" class="brand-logo-dark h-11 w-auto sm:h-12" />
     </a>
 
-    <nav class="hidden items-center gap-5 xl:gap-7 lg:flex" aria-label="Principal">
+    <nav class="hidden items-center gap-5 lg:flex lg:flex-1 lg:justify-center xl:gap-7" aria-label="Principal">
       <div class="group relative">
         <button
           class="flex items-center gap-1 text-sm font-medium text-ink/80 hover:text-ink aria-[current=page]:text-magenta-600"
@@ -54,6 +54,7 @@ const serviceItem = nav.find((n) => "children" in n && n.children);
       ))}
     </nav>
 
+    <div class="ml-auto flex items-center gap-3 lg:ml-0">
     <a href={primaryCta.href} class="header-cta btn-primary btn-sm hidden shrink-0 lg:inline-flex">
       {primaryCta.shortLabel}
     </a>
@@ -88,9 +89,6 @@ const serviceItem = nav.find((n) => "children" in n && n.children);
         </a>
       </div>
     </details>
+    </div>
   </div>
 </header>
-
-<style>
-  .header-cta.btn-primary { box-shadow: none; background: var(--color-magenta-600); }
-</style>

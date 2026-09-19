@@ -24,14 +24,16 @@ const cases = publishableResults();
     </div>
   </section>
 
-  <div class="container-page py-16 sm:py-20">
-    <div class="mb-10 flex items-start gap-3 rounded-2xl border border-lime-500/40 bg-lime-500/10 p-5 text-sm text-ink/75">
-      <p>
-        <strong>Nota para el equipo (quitar antes de lanzar):</strong> los casos de abajo están
-        redactados sin cifras porque aún no están verificadas ni autorizadas. Confirmar permisos
-        y métricas reales con cada cliente antes de publicar.
-      </p>
-    </div>
+  <div class="container-page section-y">
+    {import.meta.env.DEV && (
+      <div class="mb-10 flex items-start gap-3 rounded-2xl border border-lime-500/40 bg-lime-500/10 p-5 text-sm text-ink/75">
+        <p>
+          <strong>Nota para el equipo (solo visible en desarrollo):</strong> los casos de abajo están
+          redactados sin cifras porque aún no están verificadas ni autorizadas. Confirmar permisos
+          y métricas reales con cada cliente antes de publicar.
+        </p>
+      </div>
+    )}
 
     <div class="space-y-6">
       {cases.map((c, i) => (

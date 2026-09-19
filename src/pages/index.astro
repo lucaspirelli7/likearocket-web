@@ -40,7 +40,7 @@ const featured = getFeaturedResult();
   </div>
 
   <!-- Servicios -->
-  <section class="container-page py-20 sm:py-24">
+  <section class="container-page section-y">
     <Reveal class="max-w-2xl">
       <span class="eyebrow">Qué hacemos</span>
       <h2 class="mt-4 text-3xl sm:text-4xl">
@@ -61,7 +61,7 @@ const featured = getFeaturedResult();
   </section>
 
   <section class="border-t border-ink/15" aria-labelledby="starting-point">
-    <div class="container-page py-16 sm:py-20">
+    <div class="container-page section-y">
       <div class="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
         <div>
           <p class="eyebrow text-magenta-600">Tu punto de partida</p>
@@ -84,7 +84,7 @@ const featured = getFeaturedResult();
     </div>
   </section>
   <!-- Cómo trabajamos -->
-  <section class="relative overflow-hidden bg-cloud py-20 sm:py-24">
+  <section class="relative overflow-hidden bg-cloud section-y">
     <div class="animate-blob pointer-events-none absolute -right-24 top-0 h-72 w-72 bg-purple-500/15 blur-3xl"></div>
     <div class="container-page relative">
       <Reveal>
@@ -97,7 +97,7 @@ const featured = getFeaturedResult();
   </section>
 
   <!-- Un resultado real -->
-  <section class="container-page py-20 sm:py-24">
+  <section class="container-page section-y">
     <Reveal variant="scale" class="grid items-start gap-10 rounded-[2rem] border-2 border-ink/10 bg-white p-8 shadow-[0_40px_80px_-50px_rgba(25,10,51,0.4)] sm:p-12 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
         <span class="eyebrow">Un caso, no una galería</span>
@@ -126,8 +126,9 @@ const featured = getFeaturedResult();
   </section>
 
   <!-- Quiénes somos, breve -->
-  <section class="border-t border-ink/10 bg-cloud py-20 sm:py-24">
-    <div class="container-page max-w-3xl">
+  <section class="border-t border-ink/10 bg-cloud section-y">
+    <div class="container-page">
+     <div class="max-w-3xl">
       <Reveal>
         <span class="eyebrow">Quiénes somos</span>
       </Reveal>
@@ -143,6 +144,7 @@ const featured = getFeaturedResult();
           Conócenos <Icon name="arrow" class="h-4 w-4" />
         </a>
       </Reveal>
+     </div>
     </div>
   </section>
 
@@ -153,14 +155,13 @@ const featured = getFeaturedResult();
   .home-hero { background: var(--page-bg); color: var(--readable); border-bottom: 1px solid var(--line); }
   .hero-grid { display: grid; grid-template-columns: 1.55fr 1fr; align-items: center; gap: 3rem; padding-block: 5.5rem 6rem; }
   .hero-copy .eyebrow { color: var(--readable); letter-spacing: .14em; }
-  .hero-copy h1 { margin-top: 1.5rem; font-size: clamp(2.65rem, 4.5vw, 4rem); line-height: 1.12; letter-spacing: -.055em; text-wrap: initial; }
+  .hero-copy h1 { margin-top: 1.5rem; font-size: clamp(2.65rem, 4.5vw, 4rem); line-height: 1.12; letter-spacing: -.03em; text-wrap: initial; }
   .hero-copy h1 span { color: var(--link-accent); }
   .hero-description { max-width: 32rem; margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.75; color: var(--muted); }
   .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.4rem; margin-top: 2rem; }
-  .hero-actions .btn-primary { box-shadow: none; background: var(--color-magenta-600); }
   .hero-secondary { display: inline-flex; align-items: center; gap: .6rem; font-weight: 600; font-size: .9rem; text-decoration: underline; text-underline-offset: .3rem; }
   .hero-note { margin-top: 1.5rem; max-width: 28rem; font-size: .8rem; line-height: 1.6; color: var(--muted); }
-  .hero-brand { display: flex; flex-direction: column; align-items: center; justify-content: center; border-left: 1px solid var(--line); padding-left: 2rem; min-height: 25rem; }
+  .hero-brand { align-self: stretch; display: flex; flex-direction: column; align-items: center; justify-content: center; border-left: 1px solid var(--line); padding-left: 2rem; min-height: 25rem; }
   .hero-brand img { width: min(100%, 20rem); height: auto; }
   .hero-brand p { margin-top: 1rem; text-align: center; font-family: var(--font-display); font-size: 1.35rem; line-height: 1.4; letter-spacing: -.03em; }
   .hero-brand strong.groovy { display: inline-block; margin-top: .4rem; font-size: 1.65rem; font-weight: 400; line-height: 1.25; }

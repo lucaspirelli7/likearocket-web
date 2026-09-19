@@ -8,6 +8,8 @@ import Reveal from "../../components/Reveal.astro";
 const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
+// Rejilla de 3 columnas: si sobran 2 celdas en la última fila, el primer artículo ocupa 2 columnas.
+const featureFirst = posts.length > 3 && posts.length % 3 === 2;
 const fmt = (d: Date) =>
   d.toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
 const catColor: Record<string, string> = {
@@ -37,13 +39,13 @@ const catColor: Record<string, string> = {
     </div>
   </section>
 
-  <div class="container-page py-16 sm:py-20">
+  <div class="container-page section-y">
     {posts.length === 0 ? (
       <p class="prose-lr">Todavía no hay artículos publicados.</p>
     ) : (
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post, i) => (
-          <Reveal variant="scale" delay={(i % 3) * 90} class="h-full">
+          <Reveal variant="scale" delay={(i % 3) * 90} class={`h-full ${i === 0 && featureFirst ? "lg:col-span-2" : ""}`}>
             <a href={`/blog/${post.id}`} class="group card-hover flex h-full flex-col overflow-hidden rounded-2xl border-2 border-ink/10 bg-white p-6 hover:border-ink/20">
               <span class={`text-xs font-semibold uppercase tracking-[0.14em] ${catColor[post.data.category] ?? "text-cyan-600"}`}>
                 {post.data.category}

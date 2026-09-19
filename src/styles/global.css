@@ -55,6 +55,10 @@
 
   /* pie: gris-violáceo apagado, un punto más claro que la tinta */
   --color-footer: #262234;
+
+  /* interlínea de los H2 (text-3xl/4xl): el valor por defecto de Tailwind (1.11) es muy justo */
+  --text-3xl--line-height: 1.22;
+  --text-4xl--line-height: 1.18;
 }
 
 @layer base {
@@ -63,12 +67,20 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /* Los revelados laterales y los blobs se salen del viewport: que no generen scroll horizontal.
+     `clip` (no `hidden`) no crea contenedor de scroll, así que el header sticky sigue funcionando. */
+  html, body { overflow-x: clip; }
+
   body {
     @apply bg-white text-ink font-sans antialiased;
   }
 
+  /* Poppins 800 tiene espacios entre palabras estrechos: con tracking muy negativo las
+     palabras se funden. Tracking suave + un poco de word-spacing. */
   h1, h2, h3, h4 {
-    @apply font-display font-extrabold tracking-tight text-balance;
+    @apply font-display font-extrabold text-balance;
+    letter-spacing: -0.02em;
+    word-spacing: 0.06em;
   }
 
   ::selection {
@@ -94,6 +106,12 @@
   }
   @media (min-width: 640px) {
     .container-page { padding-inline: 2rem; }
+  }
+
+  /* ritmo vertical único entre secciones (móvil 4rem · escritorio 5rem) */
+  .section-y { padding-block: 4rem; }
+  @media (min-width: 640px) {
+    .section-y { padding-block: 5rem; }
   }
 
   .btn,
@@ -155,7 +173,7 @@
     align-items: center;
     gap: 0.5rem;
     font-family: var(--font-display);
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.2em;
@@ -183,6 +201,9 @@
   letter-spacing: 0.01em;
   line-height: 1.05;
 }
+/* Dentro de un titular, sus ascendentes y descendentes son más altos que los de Poppins:
+   más interlínea para que no pisen la línea contigua. */
+:is(h1, h2) .groovy { line-height: 1.3; }
 
 /* ==================================================================
    MOVIMIENTO — animaciones, revelados y transiciones
@@ -393,8 +414,12 @@ body { background: var(--page-bg); color: var(--readable); }
 @media (max-width: 1023px) { .theme-toggle { margin-left: auto; } }
 
 /* Shared contrast corrections in both themes. */
-.btn-primary, .btn-sm.btn-primary { background: #b00065; color: #fff; box-shadow: none; }
-.btn-primary:hover { background: #940054; }
+:root { --btn-primary: #b00065; --btn-primary-hover: #940054; }
+.btn-primary, .btn-sm.btn-primary { background: var(--btn-primary); color: #fff; box-shadow: none; }
+.btn-primary:hover { background: var(--btn-primary-hover); }
+
+/* Bordes de tarjeta: ink/10 sobre blanco es casi invisible (~1,2:1). Usa el token de línea. */
+[data-theme="light"] [class*="border-ink/10"] { border-color: var(--line); }
 .prose-lr { color: var(--muted); }
 .text-gradient { background: none; color: var(--link-accent); -webkit-text-fill-color: currentColor; }
 [class~="text-cyan-600"], [class~="text-cyan-700"], .eyebrow { color: #006d6b; }
@@ -448,3 +473,6 @@ form :is(input, select, textarea):focus { border-color: var(--link-accent); outl
 /* Quiet decorative outlines; interactive fields retain stronger boundaries. */
 [data-theme="dark"] .border-2[class*="border-ink"] { border-width: 1px; }
 [data-theme="dark"] header summary { border-color: #887a9d; }
+
+/* El destello blanco de los Panel se ve como una mancha sobre fondo oscuro. */
+[data-theme="dark"] .panel-blob { background-color: rgb(255 255 255 / 0.05); }

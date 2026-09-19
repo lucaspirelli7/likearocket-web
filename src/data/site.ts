@@ -56,7 +56,7 @@ export const team = [
     name: "Lucas A. Pirell",
     role: "Marketing y desarrollo web",
     specialty: "GEO IA & Creatividad",
-    avatar: "/team/1.jpg",
+    avatar: "/team/1-lavanda.jpg",
     accent: "border-lime-500",
   },
 ] as const;
